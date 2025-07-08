@@ -1,0 +1,147 @@
+# depslib dependency file v1.0
+1750858703 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\achivoentrada.cpp
+	<iostream>
+	"ArchivoEntrada.h"
+
+1750930096 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivoentrada.h
+	"Entrada.h"
+	<string>
+
+1750780124 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\entrada.h
+	<string>
+	<cstring>
+	"Constante.h"
+	"Fecha.h"
+
+1750259502 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\constante.h
+
+1751984784 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
+
+1750777108 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.cpp
+	<iostream>
+	"ArchivoPelicula.h"
+
+1750775325 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.h
+	"Pelicula.h"
+
+1751039262 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.h
+	"Constante.h"
+	<string>
+	"Fecha.h"
+
+1748868655 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivorespaldo.cpp
+	<iostream>
+	"ArchivoRespaldo.h"
+
+1748654195 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivorespaldo.h
+	"Entrada.h"
+	"Pelicula.h"
+	"Sala.h"
+
+1750771436 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.h
+	"Constante.h"
+	<string>
+
+1750817936 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivosala.cpp
+	<iostream>
+	<string>
+	"ArchivoSala.h"
+
+1750817936 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivosala.h
+	"Sala.h"
+	<string>
+
+1750888763 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\entrada.cpp
+	<iostream>
+	"Entrada.h"
+	<string>
+	<cstring>
+
+1750903808 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\informes.cpp
+	<iostream>
+	"Informes.h"
+	"Entrada.h"
+	"Pelicula.h"
+	"Sala.h"
+	<cstring>
+
+1750866212 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\informes.h
+	"ArchivoEntrada.h"
+	"ArchivoPelicula.h"
+	"ArchivoSala.h"
+
+1751984863 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\main.cpp
+	<iostream>
+	<cstring>
+	"Menu.h"
+	"Fecha.h"
+
+1750858383 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\menu.h
+	"ManagerPeliculas.h"
+	"ManagerSalas.h"
+	"ManagerEntrada.h"
+	"ManagerRespaldo.h"
+	"Informes.h"
+
+1750940096 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.h
+	"Pelicula.h"
+	"ArchivoPelicula.h"
+	<string>
+
+1750855356 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.h
+	"Sala.h"
+	"ArchivoSala.h"
+
+1750779053 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerentrada.h
+	"ArchivoEntrada.h"
+
+1748653338 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerrespaldo.h
+	"ArchivoEntrada.h"
+	"ArchivoPelicula.H"
+	"ArchivoRespaldo.h"
+	"ArchivoSala.h"
+
+1751035567 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerentrada.cpp
+	<iostream>
+	"ManagerEntrada.h"
+	"ManagerPeliculas.h"
+	"ManagerSalas.h"
+	"Fecha.h"
+	"Constante.h"
+
+1751039295 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+	<iostream>
+	"ManagerPeliculas.h"
+	<cstring>
+
+1750896602 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerrespaldo.cpp
+	<iostream>
+	"ManagerRespaldo.h"
+
+1750890033 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.cpp
+	<iostream>
+	"Constante.h"
+	"ManagerSalas.h"
+	<cstring>
+
+1750895531 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\menu.cpp
+	<iostream>
+	"Menu.h"
+
+1751039328 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
+	<iostream>
+	<cstring>
+	"Pelicula.h"
+	"ArchivoPelicula.h"
+
+1750771392 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.cpp
+	<iostream>
+	"Sala.h"
+	"Constante.h"
+	<cstring>
+
+1751984784 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
+	<iostream>
+	<limits>
+	"Fecha.h"
+

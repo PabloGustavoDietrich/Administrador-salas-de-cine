@@ -9,6 +9,7 @@ public:
     Fecha(int dia, int mes, int anio);
     void cargarFecha();
     void mostrarFecha();
+    int validarEntero();
     bool esFechaValida(int dia, int mes, int anio);
     int getDia();
     int getMes();

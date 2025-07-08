@@ -1,8 +1,13 @@
 #include <iostream>
+#include <limits>
 using namespace std;
 #include "Fecha.h"
 
-Fecha::Fecha() {}
+Fecha::Fecha() {
+    _dia=0;
+    _mes=0;
+    _anio=0;
+}
 
 Fecha::Fecha(int dia, int mes, int anio)
 {
@@ -15,31 +20,61 @@ void Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
     int dia;
     int mes;
     int anio;
+    int contadorDeErrores=0;
     bool esValida;
     bool intento=false;
-    do{
-    cout<< "INGRESE EL DIA: "<<endl;
-    cin>> dia;
-    cout<< "INGRESE EL MES: "<<endl;
-    cin>> mes;
-    cout<< "INGRESE EL ANIO: "<<endl;
-    cin>> anio;
+    do
+    {
+        cout<< "INGRESE EL DIA: "<<endl;
+        dia=validarEntero();/// aca validamos que ingrese un entero
 
-    esValida=esFechaValida(dia, mes, anio);
-    if(esValida){
-    setDia(dia);
-    setMes(mes);
-    setAnio(anio);
-    }else{
-        cout<< "LA FECHA INGRESADA NO ES VALIDA, PRESIONE 1 SI DESEA CARGAR OTRA FECHA O 0 PARA SALIR"<<endl;
-        cin>>intento;
+        cout<< "INGRESE EL MES: "<<endl;
+        mes=validarEntero();
+
+        cout<< "INGRESE EL ANIO: "<<endl;
+        anio=validarEntero();
+
+        esValida=esFechaValida(dia, mes, anio);/// aca validamos que la fecha sea correcta
+        if(esValida)
+        {
+            setDia(dia);
+            setMes(mes);
+            setAnio(anio);
+        }
+        else
+        {
+            contadorDeErrores++;
+            if(contadorDeErrores<3){
+            cout<< "LA FECHA INGRESADA NO ES VALIDA, PRESIONE 1 SI DESEA CARGAR OTRA FECHA O 0 PARA SALIR"<<endl;
+            cin>>intento;
+            }
+        }
+
     }
-
-    }while(!esValida&&intento);
+    while(!esValida&&intento&&contadorDeErrores<3);
 
 }
-void Fecha::mostrarFecha(){
+void Fecha::mostrarFecha()
+{
     cout<< _dia << "/"<< _mes<< "/"<< _anio<<endl;
+}
+
+int Fecha::validarEntero(){
+    int entero;
+
+    while (true) {
+        cin >> entero;
+
+        if (cin.fail()) {
+            cout << "Entrada invalida. Intente nuevamente: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            // Siempre limpiar el resto de la línea
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return entero;
+        }
+    }
 }
 
 bool Fecha::esFechaValida(int dia, int mes, int anio)

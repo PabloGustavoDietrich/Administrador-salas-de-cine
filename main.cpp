@@ -5,8 +5,12 @@ using namespace std;
 #include "Fecha.h"
 int main()
 {
-    Menu miMenu;
-    miMenu.mostrarMenuPrincipal();
+    ///Menu miMenu;
+    ///miMenu.mostrarMenuPrincipal();
+
+    Fecha miFecha;
+    miFecha.cargarFecha();
+    miFecha.mostrarFecha();
 
     return 0;
 }
