@@ -1,0 +1,11 @@
+#ifndef CONSTANTE_H_INCLUDED
+#define CONSTANTE_H_INCLUDED
+
+const int FILAS=5;
+const int COLUMNAS=10;
+
+
+const int TAMANIOCHARMEDIO=30;
+const int TAMANIOCHARLARGO=50;
+
+#endif // CONSTANTE_H_INCLUDED

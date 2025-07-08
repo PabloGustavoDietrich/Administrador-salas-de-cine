@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="administracionSalasDeCine" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/administracionSalasDeCine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/administracionSalasDeCine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="AchivoEntrada.cpp" />
+		<Unit filename="ArchivoEntrada.h" />
+		<Unit filename="ArchivoPelicula.cpp" />
+		<Unit filename="ArchivoPelicula.h" />
+		<Unit filename="ArchivoRespaldo.cpp" />
+		<Unit filename="ArchivoRespaldo.h" />
+		<Unit filename="ArchivoSala.cpp" />
+		<Unit filename="ArchivoSala.h" />
+		<Unit filename="Constante.h" />
+		<Unit filename="Entrada.cpp" />
+		<Unit filename="Entrada.h" />
+		<Unit filename="Fecha.cpp" />
+		<Unit filename="Fecha.h" />
+		<Unit filename="Informes.cpp" />
+		<Unit filename="Informes.h" />
+		<Unit filename="ManagerEntrada.cpp" />
+		<Unit filename="ManagerEntrada.h" />
+		<Unit filename="ManagerPeliculas.cpp" />
+		<Unit filename="ManagerPeliculas.h" />
+		<Unit filename="ManagerRespaldo.cpp" />
+		<Unit filename="ManagerRespaldo.h" />
+		<Unit filename="ManagerSalas.cpp" />
+		<Unit filename="ManagerSalas.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
+		<Unit filename="Pelicula.cpp" />
+		<Unit filename="Pelicula.h" />
+		<Unit filename="Peliculas.dat" />
+		<Unit filename="Sala.cpp" />
+		<Unit filename="Sala.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,22 @@
+
+# Archivos de compilación
+*.o
+*.exe
+*.obj
+*.dll
+
+# Carpetas generadas por Code::Blocks
+bin/
+obj/
+
+# Archivos temporales o de sistema
+*.log
+*.tmp
+*.dat
+*.depend
+*.layout
+*.autosave
+
+# Otros
+*.DS_Store
+Thumbs.db
