@@ -15,7 +15,7 @@
 
 1750259502 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\constante.h
 
-1751984784 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
+1752008575 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
 
 1750777108 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.cpp
 	<iostream>
@@ -24,7 +24,7 @@
 1750775325 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.h
 	"Pelicula.h"
 
-1751039262 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.h
+1752009704 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.h
 	"Constante.h"
 	<string>
 	"Fecha.h"
@@ -70,11 +70,12 @@
 	"ArchivoPelicula.h"
 	"ArchivoSala.h"
 
-1751984863 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\main.cpp
+1752010070 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\main.cpp
 	<iostream>
 	<cstring>
 	"Menu.h"
 	"Fecha.h"
+	"Pelicula.h"
 
 1750858383 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\menu.h
 	"ManagerPeliculas.h"
@@ -109,7 +110,7 @@
 	"Fecha.h"
 	"Constante.h"
 
-1751039295 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+1752010014 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
 	<iostream>
 	"ManagerPeliculas.h"
 	<cstring>
@@ -128,7 +129,7 @@
 	<iostream>
 	"Menu.h"
 
-1751039328 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
+1752009704 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
 	<iostream>
 	<cstring>
 	"Pelicula.h"
@@ -140,7 +141,7 @@
 	"Constante.h"
 	<cstring>
 
-1751984784 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
+1752008575 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
 	<iostream>
 	<limits>
 	"Fecha.h"

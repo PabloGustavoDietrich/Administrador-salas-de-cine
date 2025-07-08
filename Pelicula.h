@@ -11,14 +11,15 @@ class Pelicula{
 public:
     Pelicula();
     Pelicula(int ID, string nombrePelicula,string nombreDirector,string apellidoDirector,string generoPelicula,string clasificacionPelicula,bool estado, Fecha fechaDeEstreno);
+    void pasarAMinusculas(string &cadena);
 
-    void cargarPelicula();
-    void setNumeroID();
-    bool setNombrePelicula(string nombrePelicula);
-    bool setNombreDelDirector(string nombreDirector);
-    bool setApellidoDelDirector(string apellidoDirector);
-    bool setGeneroPelicula(string generoPelicula);
-    bool setClasificacionPelicula(string clasificacionPelicula);///setCalisificacionPelicula se corrigio estaba mal escrito
+    bool cargarPelicula();
+    void setNumeroID(int numeroID);
+    void setNombrePelicula(string nombrePelicula);
+    void setNombreDelDirector(string nombreDirector);
+    void setApellidoDelDirector(string apellidoDirector);
+    void setGeneroPelicula(string generoPelicula);
+    void setClasificacionPelicula(string clasificacionPelicula);///setCalisificacionPelicula se corrigio estaba mal escrito
     void setEstado(bool estado);
     void setFechaDeEstreno(Fecha fechaDeEstreno);/// setFechaDeEstrano se corrigio estaba mal escrito
 

@@ -5,113 +5,11 @@ using namespace std;
 
 void ManagerPeliculas::cargarPelicula()
 {
-    bool banderaDeCarga=true;
-    bool banderaDeError=false;
-    bool banderaDeError2=true;
-    int cantidadDePeliculas;
-    int peliculaID;
-    string nombrePelicula;
-    string nombreDelDirector;
-    string apellidoDelDirector;
-    string generoPelicula;
-    string clasificacionPelicula;
-    Fecha fechaDeEstreno;
     Pelicula registro;
-
-    /// PODEMOS ASIGNAR ID DE ESTA MANERA YA QUE NO ELIMINAMOS PELICULAS SINO SOLO DAMOS BAJAS LOGICAS
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();///nos guardamos el valor de la cantidad de pwliculas que hay
-   /* if(cantidadDePeliculas<0) ///si no hay peliculas nos llega un -1
+    if(registro.cargarPelicula())
     {
-        peliculaID=1;
-        registro.setNumeroID(peliculaID);
-    }
-    else
-    {
-        peliculaID=cantidadDePeliculas+1;
-        registro.setNumeroID(peliculaID);
-    }*/
+        cout<<"PELICULA CARGADA CON EXITO"<<endl;
 
-    while(banderaDeCarga&&!banderaDeError&&banderaDeError2)
-    {
-        cout<< "Ingrese el nombre de la Pelicula: "<<endl;
-        cin.ignore();///sin el ignore nos manda directamente al mensaje de error
-        getline(cin,nombrePelicula);
-        banderaDeError2=verificarSiExiste(nombrePelicula);
-        banderaDeError=registro.setNombrePelicula(nombrePelicula);
-        if(banderaDeError2)
-        {
-            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }
-    }
-    banderaDeError=false;/// seteamos la bandera a false para la siguiente carga de datos
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "Ingrese nombre del Director: "<<endl;
-        getline(cin,nombreDelDirector);
-        banderaDeError=registro.setNombreDelDirector(nombreDelDirector);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();///en este caso en importante dejar el ignore aca distinto de la carga anterior
-        }
-    }
-    banderaDeError=false;
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "ingrese el apellido del director: "<<endl;
-        getline(cin,apellidoDelDirector);
-        banderaDeError=registro.setApellidoDelDirector(apellidoDelDirector);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga del apellido, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }
-    }
-    banderaDeError=false;
-
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "ingrese el genero de la pelicula: "<<endl;
-        getline(cin,generoPelicula);
-        banderaDeError=registro.setGeneroPelicula(generoPelicula);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga del genero de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }
-    }
-    banderaDeError=false;
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "ingrese la clasificacion de la pelicula: (ATP, mayores de 14 y mayores de 18)"<<endl;
-        getline(cin,clasificacionPelicula);
-        banderaDeError=registro.setClasificacionPelicula(clasificacionPelicula);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga la clasificacion de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }
-    }
-    banderaDeError=false;
-
-    /// POR DEFECTO QUEREMOS QUE LAS PELICULAS NUEVAS SE CREEN FUERA DE CARTELERA
-    registro.setEstado(false);
-
-
-    fechaDeEstreno.cargarFecha();
-
-    if(banderaDeCarga&&!banderaDeError)
-    {
         if(_archiPeli.guardarPelicula(registro))
         {
             cout<< "LA PELICULA SE GUARDO CORRECTAMENTE"<<endl;
@@ -348,18 +246,3 @@ int ManagerPeliculas::cantidadPeliculasEnCartelera()
     return cantidadDePeliculasEnCartelera;
 }
 
-bool ManagerPeliculas::verificarSiExiste(string nombrePelicula){
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-    vecPeliculas=new Pelicula[cantidadDePeliculas];
-    for(int i=0;i<cantidadDePeliculas;i++){
-        if(vecPeliculas[i].getNombrePelicula()==nombrePelicula){
-            cout<<"encontrado"<<endl;
-            delete[] vecPeliculas;
-            return true;
-        }
-    }
-    delete[] vecPeliculas;
-    return false;
-}

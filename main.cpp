@@ -3,14 +3,11 @@
 using namespace std;
 #include "Menu.h"
 #include "Fecha.h"
+#include "Pelicula.h"
 int main()
 {
-    ///Menu miMenu;
-    ///miMenu.mostrarMenuPrincipal();
-
-    Fecha miFecha;
-    miFecha.cargarFecha();
-    miFecha.mostrarFecha();
+    Menu miMenu;
+    miMenu.mostrarMenuPrincipal();
 
     return 0;
 }

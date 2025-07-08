@@ -15,7 +15,7 @@ Fecha::Fecha(int dia, int mes, int anio)
     setMes(mes);
     setAnio(anio);
 }
-void Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el objeto si la fecha no es valida o dejar de cargar datos
+bool Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el objeto si la fecha no es valida o dejar de cargar datos
 {
     int dia;
     int mes;
@@ -53,13 +53,14 @@ void Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
     }
     while(!esValida&&intento&&contadorDeErrores<3);
 
+    return esValida;
 }
 void Fecha::mostrarFecha()
 {
     cout<< _dia << "/"<< _mes<< "/"<< _anio<<endl;
 }
 
-int Fecha::validarEntero(){
+int Fecha::validarEntero(){/// podrias mas adelante mandar el contador por referencia
     int entero;
 
     while (true) {

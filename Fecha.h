@@ -7,7 +7,7 @@ class Fecha{
 public:
     Fecha();
     Fecha(int dia, int mes, int anio);
-    void cargarFecha();
+    bool cargarFecha();
     void mostrarFecha();
     int validarEntero();
     bool esFechaValida(int dia, int mes, int anio);

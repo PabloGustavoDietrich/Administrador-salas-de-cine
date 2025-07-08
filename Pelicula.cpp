@@ -7,7 +7,7 @@ Pelicula::Pelicula() {}
 
 Pelicula::Pelicula(int ID, string nombrePelicula,string nombreDirector,string apellidoDirector,string generoPelicula,string clasificacionPelicula,bool estado, Fecha fechaDeEstreno)
 {
-    setNumeroID();
+    setNumeroID(ID);
     setNombrePelicula(nombrePelicula);
     setNombreDelDirector(nombreDirector);
     setApellidoDelDirector(apellidoDirector);
@@ -17,81 +17,204 @@ Pelicula::Pelicula(int ID, string nombrePelicula,string nombreDirector,string ap
     setFechaDeEstreno(fechaDeEstreno);
 }
 
-void Pelicula::cargarPelicula(){
+bool Pelicula::cargarPelicula()
+{
+//////////// VARIABLES DE LA PELICULA ////////////////
     string nombrePelicula;
     string nombreDelDirector;
     string apellidoDelDirector;
     string generoPelicula;
     string clasificacionPelicula;
     Fecha fechaDeEstreno;
-    bool estado;
-
-    setNumeroID();
-
-
-}
-
-void Pelicula::setNumeroID()
-{
-    int cantidadDePeliculas;
+    int estado;
+//// VARIABLES DEL ARCHIVO ////////////////
     ArchivoPelicula archivoPelicula;
-    cantidadDePeliculas=archivoPelicula.getCantidadPeliculas();///nos guardamos el valor de la cantidad de pwliculas que hay
+    int cantidadDePeliculas;
+    Pelicula *vecPeliculas;
+
+    bool banderaDeCarga=true;//// si no se desea carga mas datos la pasamos a false
+    bool esDatoValido=false;
+
+    cantidadDePeliculas=archivoPelicula.getCantidadPeliculas();
+    vecPeliculas=new Pelicula[cantidadDePeliculas];
+    archivoPelicula.leerTodas(vecPeliculas,cantidadDePeliculas);
+
     if(cantidadDePeliculas<0) ///si no hay peliculas nos llega un -1
     {
-        _peliculaID=1;
+        setNumeroID(1);
     }
     else
     {
-        _peliculaID=cantidadDePeliculas+1;
+        setNumeroID(cantidadDePeliculas+1);
+    }
+
+    cin.ignore();
+
+    while(banderaDeCarga&& !esDatoValido)
+    {
+        cout<< "Ingrese el nombre de la Pelicula: "<<endl;
+        getline(cin,nombrePelicula);
+        pasarAMinusculas(nombrePelicula);
+        bool encontro=false;
+
+        for(int i=0; i<cantidadDePeliculas; i++)
+        {
+            string nombreAComparar=vecPeliculas[i].getNombrePelicula();
+            pasarAMinusculas(nombreAComparar); ///despues de guardar directamente en minusculas todo esta linea se puede borrar
+            if(nombreAComparar==nombrePelicula)
+            {
+                encontro=true;
+            }
+        }
+        esDatoValido=nombrePelicula.length()> 0 && nombrePelicula.length() < TAMANIOCHARMEDIO && !encontro;
+        if (!esDatoValido)
+        {
+            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+            cin>>banderaDeCarga;
+            cin.ignore();
+        }else{
+            setNombrePelicula(nombrePelicula);
+        }
+    }
+    esDatoValido=false;
+
+    while(banderaDeCarga&& !esDatoValido){
+
+        cout<< "Ingrese nombre del Director: "<<endl;
+        getline(cin,nombreDelDirector);
+
+        esDatoValido=nombreDelDirector.length() > 0 && nombreDelDirector.length() < TAMANIOCHARMEDIO;
+        if(!esDatoValido)
+        {
+            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+            cin>>banderaDeCarga;
+            cin.ignore();///en este caso en importante dejar el ignore aca distinto de la carga anterior
+        }else{
+            setNombreDelDirector(nombreDelDirector);
+        }
+    }
+    esDatoValido=false;
+
+    while(banderaDeCarga&& !esDatoValido){
+
+        cout<< "Ingrese apellido del Director: "<<endl;
+        getline(cin,apellidoDelDirector);
+
+        esDatoValido=apellidoDelDirector.length() > 0 && apellidoDelDirector.length() < TAMANIOCHARMEDIO;
+        if(!esDatoValido)
+        {
+            cout<<"Error con la carga del apellido, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+            cin>>banderaDeCarga;
+            cin.ignore();///en este caso en importante dejar el ignore aca distinto de la carga anterior
+        }else{
+            setNombreDelDirector(apellidoDelDirector);
+        }
+    }
+    esDatoValido=false;
+
+    while(banderaDeCarga&&!esDatoValido)
+    {
+        cout<< "ingrese el genero de la pelicula: "<<endl;
+        getline(cin,generoPelicula);
+        string generos[] = {"accion","aventura","animacion","comedia","drama","terror","ciencia ficcion","fantasia","documental","musical","romance","misterio","suspenso","crimen","guerra","historica","western","biografia","familia","deporte"};
+        pasarAMinusculas(generoPelicula);
+        bool encontro=false;
+        for(int i=0;i<20;i++){
+            if(generoPelicula==generos[i]){
+                encontro=true;
+            }
+        }
+        esDatoValido=generoPelicula.length() > 0 && generoPelicula.length() < TAMANIOCHARMEDIO && encontro;
+        if(!esDatoValido)
+        {
+            cout<<"Error con la carga del genero de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+            cin>>banderaDeCarga;
+            cin.ignore();
+        }else{setGeneroPelicula(generoPelicula);}
+    }
+    esDatoValido=false;
+
+    while(banderaDeCarga&&!esDatoValido)
+    {
+        int clasificacionElegida;
+        cout<< "ingrese el numero de la clasificacion de la pelicula: (1= ATP, 2= mayores de 14 o 3= mayores de 18)"<<endl;
+        cin>>clasificacionElegida;
+        cin.ignore();
+        switch(clasificacionElegida){
+            case 1: clasificacionPelicula="atp";
+                    esDatoValido=true;
+                    break;
+            case 2: clasificacionPelicula="mayores de 14";
+                    esDatoValido=true;
+                    break;
+            case 3: clasificacionPelicula="mayores de 18";
+                    esDatoValido=true;
+                    break;
+            default:
+                cout<<"Error con la carga la clasificacion de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+                cin>>banderaDeCarga;
+                cin.ignore();
+        }
+        if(esDatoValido)
+        {
+            setClasificacionPelicula(clasificacionPelicula);
+        }
+    }
+    esDatoValido=false;
+
+    banderaDeCarga=fechaDeEstreno.cargarFecha();
+    if(banderaDeCarga){
+        setFechaDeEstreno(fechaDeEstreno);
+    }
+    while(banderaDeCarga&&!esDatoValido){
+        cout<<"LA PELICULA ESTA EN CARTELERA (1 si esta, 0 sino esta) "<<endl;
+        cin>>estado;
+        cin.ignore();
+        esDatoValido=estado==0||estado==1;
+        if(!esDatoValido){
+            cout<<"Error con la carga del estado de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
+            cin>>banderaDeCarga;
+            cin.ignore();
+        }else{
+            setEstado(estado);
+        }
+    }
+    delete[] vecPeliculas;
+
+    return banderaDeCarga;
+}
+
+void Pelicula::pasarAMinusculas(string &cadena)
+{
+    for (char &caracter : cadena)
+    {
+        caracter = std::tolower(static_cast<unsigned char>(caracter));
     }
 }
-bool Pelicula::setNombrePelicula(string nombrePelicula)
+
+void Pelicula::setNumeroID(int peliculaID)
 {
-    if (nombrePelicula.length() > 0 && nombrePelicula.length() < TAMANIOCHARMEDIO)// menor por lo del /0
-    {
-        strcpy(_nombrePelicula,nombrePelicula.c_str());
-        return true;
-    }
-    return false;
+    _peliculaID=peliculaID;
 }
-bool Pelicula::setNombreDelDirector(string nombreDirector)
+void Pelicula::setNombrePelicula(string nombrePelicula)
 {
-    if (nombreDirector.length() > 0 && nombreDirector.length() < TAMANIOCHARMEDIO)
-    {
+    strcpy(_nombrePelicula,nombrePelicula.c_str());
+}
+void Pelicula::setNombreDelDirector(string nombreDirector)
+{
         strcpy(_nombreDelDirector,nombreDirector.c_str());
-        return true;
-    }
-    return false;
-
 }
-bool Pelicula::setApellidoDelDirector(string apellidoDirector)
+void Pelicula::setApellidoDelDirector(string apellidoDirector)
 {
-    if (apellidoDirector.length() > 0 && apellidoDirector.length() < TAMANIOCHARMEDIO)
-    {
-        strcpy(_apellidoDelDirector,apellidoDirector.c_str());
-        return true;
-    }
-    return false;
-
+    strcpy(_apellidoDelDirector,apellidoDirector.c_str());
 }
-bool Pelicula::setGeneroPelicula(string generoPelicula)
+void Pelicula::setGeneroPelicula(string generoPelicula)
 {
-    if (generoPelicula.length() > 0 && generoPelicula.length() < TAMANIOCHARMEDIO)
-    {
-        strcpy(_generoPelicula,generoPelicula.c_str());
-        return true;
-    }
-    return false;
+    strcpy(_generoPelicula,generoPelicula.c_str());
 }
-bool Pelicula::setClasificacionPelicula(string clasificacionPelicula)
+void Pelicula::setClasificacionPelicula(string clasificacionPelicula)
 {
-    if (clasificacionPelicula.length() > 0 && clasificacionPelicula.length() < TAMANIOCHARMEDIO)
-    {
-        strcpy(_clasificacionPelicula,clasificacionPelicula.c_str());
-        return true;
-    }
-    return false;
-
+    strcpy(_clasificacionPelicula,clasificacionPelicula.c_str());
 }
 void Pelicula::setFechaDeEstreno(Fecha fechaDeEstreno)
 {
