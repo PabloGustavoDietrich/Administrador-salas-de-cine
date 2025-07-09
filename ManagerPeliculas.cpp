@@ -129,6 +129,9 @@ void ManagerPeliculas::ponerEnCartelera()
     int posicion;
     Pelicula registro;
 
+    ///MOSTRAMOS EL LISTADO DE PELICULAS QUE NO ESTAN EN CARTELERA
+    mostrarPeliculasSinCartelera();
+
     posicion=buscarPosicionPeliculaPorID();
 
     if(posicion!= -1) /// si el valor de posicion fuese -1 quiere decir que no se encontro una posicion para la pelicula;
@@ -170,6 +173,40 @@ void ManagerPeliculas::mostrarPeliculasEnCartelera()
             for(int i=0; i<cantidadDePeliculas; i++)
             {
                 if(vecPeliculas[i].getEstado())
+                {
+                    vecPeliculas[i].mostrarPeliculaIDYCartelera();
+                }
+            }
+        }
+        delete[] vecPeliculas;
+    }
+    else
+    {
+        cout << "NO SE PUDIERON LEER LAS PELICULAS" << endl;
+    }
+}
+/// con esta funcion ayudamos en la opcion 5 del menu para tener una idea de que pelicula poner en cartelera
+void ManagerPeliculas::mostrarPeliculasSinCartelera()
+{
+/// ----> VARIABLES
+    int cantidadDePeliculas;
+    Pelicula *vecPeliculas;
+/// ----> conseguimos los datos necesarios
+    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
+    if(cantidadDePeliculas>0)
+    {
+        vecPeliculas=new Pelicula[cantidadDePeliculas];
+        if (vecPeliculas == nullptr)
+        {
+            cout << "No se pudo reservar memoria para las películas." << endl;
+            return;
+        }/// se valido la optencion de memoria
+        _archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas);
+        {
+            /// falta validar si consiguio memoria
+            for(int i=0; i<cantidadDePeliculas; i++)
+            {
+                if(!vecPeliculas[i].getEstado())
                 {
                     vecPeliculas[i].mostrarPeliculaIDYCartelera();
                 }

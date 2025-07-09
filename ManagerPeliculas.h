@@ -12,6 +12,7 @@ public:
     void ponerEnCartelera();
     Pelicula* traerPeliculasEnCartelera();
     void mostrarPeliculasEnCartelera();
+    void mostrarPeliculasSinCartelera();
     int cantidadPeliculasEnCartelera();
     bool verificarSiExiste(string nombrePelicula);
 private:
