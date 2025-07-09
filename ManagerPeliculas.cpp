@@ -27,9 +27,9 @@ void ManagerPeliculas::mostrarPeliculas()
 {
 /// ----> VARIABLES
     int cantidadDePeliculas;
-    Pelicula *vecPeliculas;///puntero
-/// ----> conseguimos los datos necesarios
+    Pelicula *vecPeliculas;
     cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
+
     if(cantidadDePeliculas>0)
     {
         vecPeliculas=new Pelicula[cantidadDePeliculas];
@@ -38,11 +38,12 @@ void ManagerPeliculas::mostrarPeliculas()
             cout << "No se pudo reservar memoria para las películas." << endl;
             return;
         }/// se valido la optencion de memoria
+
         if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
         {
             for(int i=0; i<cantidadDePeliculas; i++)
             {
-                mostrarPelicula(vecPeliculas[i]);
+                vecPeliculas[i].mostrarPelicula();
             }
         }
         delete[] vecPeliculas;
@@ -56,26 +57,6 @@ void ManagerPeliculas::mostrarPeliculas()
 }
 
 
-void ManagerPeliculas::mostrarPelicula(Pelicula reg)
-{
-    cout<< "-----------------------------------"<<endl;
-    cout<< "El nombre de la pelicula es: "<<reg.getNombrePelicula()<<endl;
-    cout<< "El nombre del director es: "<< reg.getNombreDelDirector()<<endl;
-    cout<< "El apellido del director es: "<< reg.getApellidoDelDirector()<<endl;
-    cout<< "El genero de la pelicula es: "<< reg.getGeneroPelicula()<<endl;
-    cout<< "La clasificacion de la pelicula es: "<<reg.getClasificacionPelicula()<<endl;
-    cout<< "LA FECHA DE ESTRENO ES: ";
-    reg.getFechaDeEstreno().mostrarFecha();
-    if(reg.getEstado())
-    {
-        cout<< "la pelicula esta en cartelera"<<endl;
-    }
-    else
-    {
-        cout<< "la pelicula no esta en cartelera"<<endl;
-    }
-    cout<< "-----------------------------------"<<endl;
-}
 /// funcion numero 3 del menu pelicula, ayuda con la funcion del menu 4 y menu 5
 int ManagerPeliculas::buscarPosicionPeliculaPorID()
 {
@@ -185,7 +166,7 @@ void ManagerPeliculas::mostrarPeliculasEnCartelera()
             {
                 if(vecPeliculas[i].getEstado())
                 {
-                    mostrarPelicula(vecPeliculas[i]);
+                    vecPeliculas[i].mostrarPelicula();
                 }
             }
         }

@@ -57,7 +57,7 @@ bool Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
 }
 void Fecha::mostrarFecha()
 {
-    cout<< _dia << "/"<< _mes<< "/"<< _anio<<endl;
+    cout<< getDia() << "/"<< getMes()<< "/"<< getAnio()<<endl;
 }
 
 int Fecha::validarEntero(){/// podrias mas adelante mandar el contador por referencia

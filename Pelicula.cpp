@@ -184,6 +184,28 @@ bool Pelicula::cargarPelicula()
     return banderaDeCarga;
 }
 
+void Pelicula::mostrarPelicula()
+{
+    cout<< "-----------------------------------"<<endl;
+    cout<< "El nombre de la pelicula es: "<<getNombrePelicula()<<endl;
+    cout<< "El nombre del director es: "<< getNombreDelDirector()<<endl;
+    cout<< "El apellido del director es: "<< getApellidoDelDirector()<<endl;
+    cout<< "El genero de la pelicula es: "<< getGeneroPelicula()<<endl;
+    cout<< "La clasificacion de la pelicula es: "<<getClasificacionPelicula()<<endl;
+    cout<< "LA FECHA DE ESTRENO ES: ";
+    getFechaDeEstreno().mostrarFecha();
+    if(getEstado())
+    {
+        cout<< "la pelicula esta en cartelera"<<endl;
+    }
+    else
+    {
+        cout<< "la pelicula no esta en cartelera"<<endl;
+    }
+    cout<< "-----------------------------------"<<endl;
+}
+
+/// ESTA FUNCION RECIBE UN STRING, Y CADA CARACTER DE ESE STRING SE VA PASANDO A MINUSCULA
 void Pelicula::pasarAMinusculas(string &cadena)
 {
     for (char &caracter : cadena)

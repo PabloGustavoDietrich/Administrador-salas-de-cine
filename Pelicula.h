@@ -14,14 +14,16 @@ public:
     void pasarAMinusculas(string &cadena);
 
     bool cargarPelicula();
+    void mostrarPelicula();
+
     void setNumeroID(int numeroID);
     void setNombrePelicula(string nombrePelicula);
     void setNombreDelDirector(string nombreDirector);
     void setApellidoDelDirector(string apellidoDirector);
     void setGeneroPelicula(string generoPelicula);
-    void setClasificacionPelicula(string clasificacionPelicula);///setCalisificacionPelicula se corrigio estaba mal escrito
+    void setClasificacionPelicula(string clasificacionPelicula);
     void setEstado(bool estado);
-    void setFechaDeEstreno(Fecha fechaDeEstreno);/// setFechaDeEstrano se corrigio estaba mal escrito
+    void setFechaDeEstreno(Fecha fechaDeEstreno);
 
     int getNumeroDeID();
     string getNombrePelicula();
