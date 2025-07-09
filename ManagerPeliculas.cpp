@@ -67,8 +67,6 @@ int ManagerPeliculas::buscarPosicionPeliculaPorID()
     cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
     if(cantidadDePeliculas>0)
     {
-        cout<< "INGRESE EL ID DE LA PELICULA: "<<endl;
-        cin>>ID;
 
         vecPeliculas=new Pelicula[cantidadDePeliculas];
         if (vecPeliculas == nullptr)
@@ -78,6 +76,9 @@ int ManagerPeliculas::buscarPosicionPeliculaPorID()
         }/// se valido la optencion de memoria
 
         _archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas);
+
+        cout<< "INGRESE EL ID DE LA PELICULA: "<<endl;
+        cin>>ID;
 
         for(int i=0; i<cantidadDePeliculas; i++)
         {
@@ -104,6 +105,9 @@ void ManagerPeliculas::sacarDeCartelera()
 {
     int posicion;
     Pelicula registro;
+    ///MOSTRAMOS EL LISTADO DE PELICULAS QUE ESTAN EN CARTELERA
+    mostrarPeliculasEnCartelera();
+
     posicion=buscarPosicionPeliculaPorID();
     if(posicion!= -1) /// si el valor de posicion fuese -1 quiere decir que no se encontro una posicion para la pelicula;
     {
@@ -124,6 +128,7 @@ void ManagerPeliculas::ponerEnCartelera()
 {
     int posicion;
     Pelicula registro;
+
     posicion=buscarPosicionPeliculaPorID();
 
     if(posicion!= -1) /// si el valor de posicion fuese -1 quiere decir que no se encontro una posicion para la pelicula;
@@ -166,7 +171,7 @@ void ManagerPeliculas::mostrarPeliculasEnCartelera()
             {
                 if(vecPeliculas[i].getEstado())
                 {
-                    vecPeliculas[i].mostrarPelicula();
+                    vecPeliculas[i].mostrarPeliculaIDYCartelera();
                 }
             }
         }

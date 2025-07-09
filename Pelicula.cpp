@@ -204,6 +204,22 @@ void Pelicula::mostrarPelicula()
     }
     cout<< "-----------------------------------"<<endl;
 }
+void Pelicula::mostrarPeliculaIDYCartelera()
+{
+    cout<< "-----------------------------------"<<endl;
+    cout<< "El ID de la pelicula es: "<< getNumeroDeID()<<endl;
+    cout<< "El nombre de la pelicula es: "<<getNombrePelicula()<<endl;
+
+    if(getEstado())
+    {
+        cout<< "la pelicula esta en cartelera"<<endl;
+    }
+    else
+    {
+        cout<< "la pelicula no esta en cartelera"<<endl;
+    }
+    cout<< "-----------------------------------"<<endl;
+}
 
 /// ESTA FUNCION RECIBE UN STRING, Y CADA CARACTER DE ESE STRING SE VA PASANDO A MINUSCULA
 void Pelicula::pasarAMinusculas(string &cadena)
