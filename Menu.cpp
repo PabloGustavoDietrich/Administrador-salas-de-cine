@@ -71,16 +71,7 @@ void Menu::menuPelicula()
             _managerMovies.mostrarPeliculas();
             break;
         case 3:
-            if(_managerMovies.buscarPosicionPeliculaPorID()!=-1)
-            {
-                cout<<"LA PELICULA ESTA GUARDADA"<<endl;
-            }
-            else
-            {
-                cout<< " LA PELICULA NO ESTA"<<endl;
-            }
-            system("pause");
-            system("cls");
+            _managerMovies.mostrarPeliculasPorID();
             break;
         case 4:
             _managerMovies.sacarDeCartelera();

@@ -7,6 +7,7 @@ class ManagerPeliculas{
 public:
     void cargarPelicula();
     void mostrarPeliculas();
+    void mostrarPeliculasPorID();
     int buscarPosicionPeliculaPorID();
     void sacarDeCartelera();
     void ponerEnCartelera();

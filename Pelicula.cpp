@@ -204,6 +204,14 @@ void Pelicula::mostrarPelicula()
     }
     cout<< "-----------------------------------"<<endl;
 }
+void Pelicula::mostrarPeliculaYID()
+{
+    cout<< "-----------------------------------"<<endl;
+    cout<< "El ID de la pelicula es: "<< getNumeroDeID()<<endl;
+    cout<< "El nombre de la pelicula es: "<<getNombrePelicula()<<endl;
+
+}
+
 void Pelicula::mostrarPeliculaIDYCartelera()
 {
     cout<< "-----------------------------------"<<endl;

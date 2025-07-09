@@ -15,6 +15,7 @@ public:
 
     bool cargarPelicula();
     void mostrarPelicula();
+    void mostrarPeliculaYID();
     void mostrarPeliculaIDYCartelera();
 
     void setNumeroID(int numeroID);
