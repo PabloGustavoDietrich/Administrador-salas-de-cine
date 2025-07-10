@@ -110,7 +110,7 @@
 	"Fecha.h"
 	"Constante.h"
 
-1752156129 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+1752161342 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
 	<iostream>
 	"ManagerPeliculas.h"
 	<cstring>
@@ -129,7 +129,7 @@
 	<iostream>
 	"Menu.h"
 
-1752074841 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
+1752161221 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
 	<iostream>
 	<cstring>
 	"Pelicula.h"
@@ -141,7 +141,7 @@
 	"Constante.h"
 	<cstring>
 
-1752064470 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
+1752160002 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
 	<iostream>
 	<limits>
 	"Fecha.h"

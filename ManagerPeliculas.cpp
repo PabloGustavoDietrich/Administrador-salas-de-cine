@@ -45,6 +45,8 @@ void ManagerPeliculas::cargarPelicula()
         {
             cout<< "LA PELICULA NO SE PUDO GUARDAR"<<endl;
         }
+    }else{
+        cout<<"LA PELICULA NO PUDO SER CARGADA CON EXITO"<<endl;
     }
     pausarYLimpiar();
 }
@@ -59,6 +61,7 @@ void ManagerPeliculas::mostrarPeliculas() {
     delete[] vec;
     pausarYLimpiar();
 }
+
 void ManagerPeliculas::mostrarPeliculasCartelera(bool enCartelera) {
     int cantidad;
     Pelicula* vec = cargarTodasLasPeliculas(cantidad);

@@ -22,7 +22,6 @@ bool Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
     int anio;
     int contadorDeErrores=0;
     bool esValida;
-    bool intento=false;
     do
     {
         cout<< "INGRESE EL DIA: "<<endl;
@@ -43,15 +42,12 @@ bool Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
         }
         else
         {
+            cout<< "INGRESO UN FECHA INCORRECTA, INTENTE CON UNA FECHA DISTINTA"<<endl;/// talvez podriamos mostrar cuantos intentos validos le quedan
             contadorDeErrores++;
-            if(contadorDeErrores<3){
-            cout<< "LA FECHA INGRESADA NO ES VALIDA, PRESIONE 1 SI DESEA CARGAR OTRA FECHA O 0 PARA SALIR"<<endl;
-            cin>>intento;
-            }
         }
 
     }
-    while(!esValida&&intento&&contadorDeErrores<3);
+    while(!esValida&&contadorDeErrores<3);
 
     return esValida;
 }

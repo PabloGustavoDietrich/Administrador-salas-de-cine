@@ -32,7 +32,7 @@ bool Pelicula::cargarPelicula()
     int cantidadDePeliculas;
     Pelicula *vecPeliculas;
 
-    bool banderaDeCarga=true;//// si no se desea carga mas datos la pasamos a false
+    int contadorDeErrores=0;
     bool esDatoValido=false;
 
     cantidadDePeliculas=archivoPelicula.getCantidadPeliculas();
@@ -50,7 +50,7 @@ bool Pelicula::cargarPelicula()
 
     cin.ignore();
 
-    while(banderaDeCarga&& !esDatoValido)
+    while(contadorDeErrores<3)
     {
         cout<< "Ingrese el nombre de la Pelicula: "<<endl;
         getline(cin,nombrePelicula);
@@ -67,121 +67,152 @@ bool Pelicula::cargarPelicula()
             }
         }
         esDatoValido=nombrePelicula.length()> 0 && nombrePelicula.length() < TAMANIOCHARMEDIO && !encontro;
-        if (!esDatoValido)
+        if (esDatoValido)
         {
-            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }else{
             setNombrePelicula(nombrePelicula);
+            contadorDeErrores=0;
+            break;
+        }
+        else
+        {
+            if(encontro)cout<<"ESA PELICULA YA ESTA GUARDADA, POR FAVOR INGRESE OTRA"<<endl;
+            if(!encontro)cout<<"ERROR CON EL INGRESO DEL NOMBRE DE LA PELICULA"<<endl;
+            contadorDeErrores++;
         }
     }
-    esDatoValido=false;
 
-    while(banderaDeCarga&& !esDatoValido){
+    while(contadorDeErrores<3)
+    {
 
         cout<< "Ingrese nombre del Director: "<<endl;
         getline(cin,nombreDelDirector);
 
         esDatoValido=nombreDelDirector.length() > 0 && nombreDelDirector.length() < TAMANIOCHARMEDIO;
-        if(!esDatoValido)
+        if(esDatoValido)
         {
-            cout<<"Error con la carga del nombre, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();///en este caso en importante dejar el ignore aca distinto de la carga anterior
-        }else{
             setNombreDelDirector(nombreDelDirector);
+            contadorDeErrores=0;
+            break;
+        }
+        else
+        {
+            cout<< "ERROR EN LA CARGA DEL NOMBRE DEL DIRECTOR" <<endl;
+            contadorDeErrores++;
         }
     }
-    esDatoValido=false;
 
-    while(banderaDeCarga&& !esDatoValido){
+    while(contadorDeErrores<3)
+    {
 
         cout<< "Ingrese apellido del Director: "<<endl;
         getline(cin,apellidoDelDirector);
 
         esDatoValido=apellidoDelDirector.length() > 0 && apellidoDelDirector.length() < TAMANIOCHARMEDIO;
-        if(!esDatoValido)
+        if(esDatoValido)
         {
-            cout<<"Error con la carga del apellido, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();///en este caso en importante dejar el ignore aca distinto de la carga anterior
-        }else{
             setNombreDelDirector(apellidoDelDirector);
+            contadorDeErrores=0;
+            break;
+        }
+        else
+        {
+            cout<< "ERROR EN LA CARGA DEL APELLIDO DEL DIRECTOR" <<endl;
+            contadorDeErrores++;
         }
     }
-    esDatoValido=false;
 
-    while(banderaDeCarga&&!esDatoValido)
+    while(contadorDeErrores<3)
     {
         cout<< "ingrese el genero de la pelicula: "<<endl;
         getline(cin,generoPelicula);
         string generos[] = {"accion","aventura","animacion","comedia","drama","terror","ciencia ficcion","fantasia","documental","musical","romance","misterio","suspenso","crimen","guerra","historica","western","biografia","familia","deporte"};
         pasarAMinusculas(generoPelicula);
-        bool encontro=false;
-        for(int i=0;i<20;i++){
-            if(generoPelicula==generos[i]){
-                encontro=true;
+        esDatoValido=false;
+        for(int i=0; i<20; i++)
+        {
+            if(generoPelicula==generos[i])
+            {
+                esDatoValido=true;
             }
         }
-        esDatoValido=generoPelicula.length() > 0 && generoPelicula.length() < TAMANIOCHARMEDIO && encontro;
-        if(!esDatoValido)
+        if(esDatoValido)
         {
-            cout<<"Error con la carga del genero de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }else{setGeneroPelicula(generoPelicula);}
+            setGeneroPelicula(generoPelicula);
+            contadorDeErrores=0;
+            break;
+        }
+        else
+        {
+            cout<< "ERROR EN LA CARGA DEL GENERO DE LA PELICULA" <<endl;
+            contadorDeErrores++;
+        }
     }
-    esDatoValido=false;
 
-    while(banderaDeCarga&&!esDatoValido)
+    while(contadorDeErrores<3)
     {
         int clasificacionElegida;
         cout<< "ingrese el numero de la clasificacion de la pelicula: (1= ATP, 2= mayores de 14 o 3= mayores de 18)"<<endl;
         cin>>clasificacionElegida;
         cin.ignore();
-        switch(clasificacionElegida){
-            case 1: clasificacionPelicula="atp";
-                    esDatoValido=true;
-                    break;
-            case 2: clasificacionPelicula="mayores de 14";
-                    esDatoValido=true;
-                    break;
-            case 3: clasificacionPelicula="mayores de 18";
-                    esDatoValido=true;
-                    break;
-            default:
-                cout<<"Error con la carga la clasificacion de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-                cin>>banderaDeCarga;
-                cin.ignore();
+        switch(clasificacionElegida)
+        {
+        case 1:
+            clasificacionPelicula="atp";
+            esDatoValido=true;
+            break;
+        case 2:
+            clasificacionPelicula="mayores de 14";
+            esDatoValido=true;
+            break;
+        case 3:
+            clasificacionPelicula="mayores de 18";
+            esDatoValido=true;
+            break;
+        default:
+            cout<< "ERROR EN LA CARGA DE LA CLASIFICACION DE LA PELICULA" <<endl;
+            esDatoValido=false;
+            contadorDeErrores++;
         }
         if(esDatoValido)
         {
             setClasificacionPelicula(clasificacionPelicula);
+            contadorDeErrores=0;
+            break;
         }
     }
-    esDatoValido=false;
 
-    banderaDeCarga=fechaDeEstreno.cargarFecha();
-    if(banderaDeCarga){
-        setFechaDeEstreno(fechaDeEstreno);
+    if(contadorDeErrores<3)
+    {
+        if(fechaDeEstreno.cargarFecha())
+        {
+            setFechaDeEstreno(fechaDeEstreno);
+        }
+        else
+        {
+            contadorDeErrores=3;/// ya que no se cargo una fecha valida
+        }
     }
-    while(banderaDeCarga&&!esDatoValido){
+    while(contadorDeErrores<3)
+    {
         cout<<"LA PELICULA ESTA EN CARTELERA (1 si esta, 0 sino esta) "<<endl;
         cin>>estado;
         cin.ignore();
         esDatoValido=estado==0||estado==1;
-        if(!esDatoValido){
-            cout<<"Error con la carga del estado de la pelicula, (presione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-            cin.ignore();
-        }else{
+        if(esDatoValido)
+        {
             setEstado(estado);
+            contadorDeErrores=0;
+            break;
+        }
+        else
+        {
+            cout<< "ERROR CON EL NUMERO INGRESADO"<<endl;
+            contadorDeErrores++;
         }
     }
     delete[] vecPeliculas;
 
-    return banderaDeCarga;
+    return contadorDeErrores<3;/// retornamos una expresion booleana ya que si no fuese menor que 3 es que en algun lado del codigo se equivoco y no se cargaron datos validos
 }
 
 void Pelicula::mostrarPelicula()
@@ -209,7 +240,6 @@ void Pelicula::mostrarPeliculaYID()
     cout<< "-----------------------------------"<<endl;
     cout<< "El ID de la pelicula es: "<< getNumeroDeID()<<endl;
     cout<< "El nombre de la pelicula es: "<<getNombrePelicula()<<endl;
-
 }
 
 void Pelicula::mostrarPeliculaIDYCartelera()
@@ -248,7 +278,7 @@ void Pelicula::setNombrePelicula(string nombrePelicula)
 }
 void Pelicula::setNombreDelDirector(string nombreDirector)
 {
-        strcpy(_nombreDelDirector,nombreDirector.c_str());
+    strcpy(_nombreDelDirector,nombreDirector.c_str());
 }
 void Pelicula::setApellidoDelDirector(string apellidoDirector)
 {
