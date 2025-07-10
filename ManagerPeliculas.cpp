@@ -3,6 +3,33 @@ using namespace std;
 #include "ManagerPeliculas.h"
 #include <cstring>
 
+void ManagerPeliculas::pausarYLimpiar() {
+    system("pause");
+    system("cls");
+}
+
+Pelicula* ManagerPeliculas::cargarTodasLasPeliculas(int& cantidad) {
+    cantidad = _archiPeli.getCantidadPeliculas();
+    if(cantidad <= 0) {
+        cout << "NO HAY PELICULAS PARA MOSTRAR" << endl;
+        return nullptr;
+    }
+
+    Pelicula* vec = new Pelicula[cantidad];
+    if(vec == nullptr) {
+        cout << "No se pudo reservar memoria para las películas." << endl;
+        return nullptr;
+    }
+
+    if(!_archiPeli.leerTodas(vec, cantidad)) {
+        cout << "NO SE PUDIERON LEER LAS PELICULAS" << endl;
+        delete[] vec;
+        return nullptr;
+    }
+
+    return vec;
+}
+
 void ManagerPeliculas::cargarPelicula()
 {
     Pelicula registro;
@@ -19,298 +46,139 @@ void ManagerPeliculas::cargarPelicula()
             cout<< "LA PELICULA NO SE PUDO GUARDAR"<<endl;
         }
     }
-    system("pause");
-    system("cls");
+    pausarYLimpiar();
+}
+void ManagerPeliculas::mostrarPeliculas() {
+    int cantidad;
+    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
+    if(!vec) return;
+
+    for(int i = 0; i < cantidad; i++) {
+        vec[i].mostrarPelicula();
+    }
+    delete[] vec;
+    pausarYLimpiar();
+}
+void ManagerPeliculas::mostrarPeliculasCartelera(bool enCartelera) {
+    int cantidad;
+    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
+    if(!vec) return;
+
+    for(int i = 0; i < cantidad; i++) {
+        if(vec[i].getEstado() == enCartelera) {
+            vec[i].mostrarPeliculaIDYCartelera();
+        }
+    }
+    delete[] vec;
+}
+void ManagerPeliculas::mostrarPeliculasEnCartelera() {
+    mostrarPeliculasCartelera(true);
 }
 
-void ManagerPeliculas::mostrarPeliculas()
-{
-/// ----> VARIABLES
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-
-    if(cantidadDePeliculas>0)
-    {
-        vecPeliculas=new Pelicula[cantidadDePeliculas];
-        if (vecPeliculas == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las películas." << endl;
-            return;
-        }/// se valido la optencion de memoria
-
-        if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
-        {
-            for(int i=0; i<cantidadDePeliculas; i++)
-            {
-                vecPeliculas[i].mostrarPelicula();
-            }
-        }
-        delete[] vecPeliculas;
-    }
-    else
-    {
-        cout<<"NO HAY PELICULAS PARA MOSTRAR"<<endl;
-    }
-    system("pause");
-    system("cls");
+void ManagerPeliculas::mostrarPeliculasSinCartelera() {
+    mostrarPeliculasCartelera(false);
 }
-void ManagerPeliculas::mostrarPeliculasPorID()
-{
-/// ----> VARIABLES
-    int posicion;
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
 
-    if(cantidadDePeliculas>0)
-    {
-        vecPeliculas=new Pelicula[cantidadDePeliculas];
-        if (vecPeliculas == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las películas." << endl;
-            return;
-        }/// se valido la optencion de memoria
+void ManagerPeliculas::mostrarPeliculasPorID() {
+    int cantidad;
+    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
+    if(!vec) return;
 
-        if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
-        {
-            for(int i=0; i<cantidadDePeliculas; i++)
-            {
-                vecPeliculas[i].mostrarPeliculaYID();///MOSTRAMOS TODAS LAS PELICULAS CON SU ID
-            }
-            posicion=buscarPosicionPeliculaPorID();/// DAMOS A ELEGIR UN ID LO BUSCAMOS
-            if(posicion!=-1)
-            {
-                vecPeliculas[posicion].mostrarPeliculaYID();
-            }
-            else
-            {
-                cout<< "ESE ID NO EXISTE"<<endl;
-            }
-            system("pause");
-            system("cls");
-        }
-        delete[] vecPeliculas;
+    for(int i = 0; i < cantidad; i++) {
+        vec[i].mostrarPeliculaYID();
     }
-    else
-    {
-        cout<<"NO HAY PELICULAS PARA MOSTRAR"<<endl;
+
+    int pos = buscarPosicionPeliculaPorID();
+    if(pos != -1) {
+        vec[pos].mostrarPeliculaYID();
     }
+
+    delete[] vec;
+    pausarYLimpiar();
 }
 
 ////ayuda con la funcion del menu 3, menu 4 y menu 5
-int ManagerPeliculas::buscarPosicionPeliculaPorID()
-{
+int ManagerPeliculas::buscarPosicionPeliculaPorID() {
+    int cantidad;
+    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
+    if(!vec) return -1;
+
     int ID;
-    int posicion=-1;
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-    if(cantidadDePeliculas>0)
-    {
-        vecPeliculas=new Pelicula[cantidadDePeliculas];
-        if (vecPeliculas == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las películas." << endl;
-            return -1;
-        }/// se valido la optencion de memoria
+    cout << "------------------------------------------" << endl;
+    cout << "INGRESE EL ID DE LA PELICULA: ";
+    cin >> ID;
 
-        _archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas);
-        cout<< "------------------------------------------"<<endl;
-        cout<< "INGRESE EL ID DE LA PELICULA: "<<endl;
-        cin>>ID;
-
-        for(int i=0; i<cantidadDePeliculas; i++)
-        {
-            if(ID==vecPeliculas[i].getNumeroDeID())
-            {
-                delete[] vecPeliculas;
-                posicion=i;
-                return posicion;
-            }
+    for(int i = 0; i < cantidad; i++) {
+        if(ID == vec[i].getNumeroDeID()) {
+            delete[] vec;
+            return i;
         }
-        delete[] vecPeliculas;
     }
-    else
-    {
-        cout<<"NO HAY PELICULA PARA BUSCAR"<<endl;
-    }
-    return posicion;
+
+    delete[] vec;
+    cout << "ESE ID NO EXISTE" << endl;
+    return -1;
 }
 
 /// OPCION 4 DEL MENU DE PELICULAS
-void ManagerPeliculas::sacarDeCartelera()
-{
-    int posicion;
-    Pelicula registro;
-    ///MOSTRAMOS EL LISTADO DE PELICULAS QUE ESTAN EN CARTELERA
+void ManagerPeliculas::sacarDeCartelera() {
     mostrarPeliculasEnCartelera();
+    int pos = buscarPosicionPeliculaPorID();
 
-    posicion=buscarPosicionPeliculaPorID();
-    if(posicion!= -1) /// si el valor de posicion fuese -1 quiere decir que no se encontro una posicion para la pelicula;
-    {
-        if(_archiPeli.bajaLogicaPelicula(registro, posicion))
-        {
-            cout<< "LA PELICULA FUE QUITADA CON EXITO"<<endl;
+    if(pos != -1) {
+        Pelicula registro;
+        if(_archiPeli.bajaLogicaPelicula(registro, pos)) {
+            cout << "LA PELICULA FUE QUITADA CON EXITO" << endl;
+        } else {
+            cout << "LA PELICULA NO ESTABA EN CARTELERA" << endl;
         }
-        else
-        {
-            cout<< "LA PELICULA NO ESTABA EN CARTELERA"<<endl;
-        }
-
     }
-    else
-    {
-        cout<< "ESE ID NO EXISTE"<<endl;
-    }
-    system("pause");
-    system("cls");
+    pausarYLimpiar();
 }
 /// OPCION 5 DEL MENU DE PELICULAS
-void ManagerPeliculas::ponerEnCartelera()
-{
-    int posicion;
-    Pelicula registro;
-
-    ///MOSTRAMOS EL LISTADO DE PELICULAS QUE NO ESTAN EN CARTELERA
+void ManagerPeliculas::ponerEnCartelera() {
     mostrarPeliculasSinCartelera();
+    int pos = buscarPosicionPeliculaPorID();
 
-    posicion=buscarPosicionPeliculaPorID();
-
-    if(posicion!= -1) /// si el valor de posicion fuese -1 quiere decir que no se encontro una posicion para la pelicula;
-    {
-        if(_archiPeli.altaLogicaPelicula(registro, posicion))
-        {
-            cout<< "LA PELICULA FUE AGREGADA CON EXITO"<<endl;
+    if(pos != -1) {
+        Pelicula registro;
+        if(_archiPeli.altaLogicaPelicula(registro, pos)) {
+            cout << "LA PELICULA FUE AGREGADA CON EXITO" << endl;
+        } else {
+            cout << "LA PELICULA YA ESTABA EN CARTELERA" << endl;
         }
-        else
-        {
-            cout<< "LA PELICULA YA ESTABA EN CARTELERA"<<endl;
-        }
-    }else
-    {
-        cout<< "ESE ID NO EXISTE"<<endl;
     }
-    system("pause");
-    system("cls");
-}
-
-
-
-/// ESTA FUNCION LA USAMOS EN LA OPCION 6 DEL MENU DE PELICULAS, Y AYUDAMOS A LA OPCION 4 DEL MENU PARA Q EL USUARIO SEPA QUE PELICULAS PODRIA SACAR DE CARTELERA
-void ManagerPeliculas::mostrarPeliculasEnCartelera()
-{
-/// ----> VARIABLES
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-/// ----> conseguimos los datos necesarios
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-    if(cantidadDePeliculas>0)
-    {
-        vecPeliculas=new Pelicula[cantidadDePeliculas];
-        if (vecPeliculas == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las películas." << endl;
-            return;
-        }/// se valido la optencion de memoria
-        if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
-        {
-            for(int i=0; i<cantidadDePeliculas; i++)
-            {
-                if(vecPeliculas[i].getEstado())
-                {
-                    vecPeliculas[i].mostrarPeliculaIDYCartelera();
-                }
-            }
-        }
-        delete[] vecPeliculas;
-    }
-    else
-    {
-        cout << "NO SE PUDIERON LEER LAS PELICULAS" << endl;
-    }
-}
-/// con esta funcion ayudamos en la opcion 5 del menu para tener una idea de que pelicula poner en cartelera
-void ManagerPeliculas::mostrarPeliculasSinCartelera()
-{
-/// ----> VARIABLES
-    int cantidadDePeliculas;
-    Pelicula *vecPeliculas;
-/// ----> conseguimos los datos necesarios
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-    if(cantidadDePeliculas>0)
-    {
-        vecPeliculas=new Pelicula[cantidadDePeliculas];
-        if (vecPeliculas == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las películas." << endl;
-            return;
-        }/// se valido la optencion de memoria
-        if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
-        {
-            /// falta validar si consiguio memoria
-            for(int i=0; i<cantidadDePeliculas; i++)
-            {
-                if(!vecPeliculas[i].getEstado())
-                {
-                    vecPeliculas[i].mostrarPeliculaIDYCartelera();
-                }
-            }
-        }
-        delete[] vecPeliculas;
-    }
-    else
-    {
-        cout << "NO SE PUDIERON LEER LAS PELICULAS" << endl;
-    }
+    pausarYLimpiar();
 }
 
 /// FUNCION PARA USAR EN LA COMPRA DE ENTRADAS
-Pelicula* ManagerPeliculas::traerPeliculasEnCartelera()
-{
-/// ----> VARIABLES
-    int cantidadDePeliculas;
-    int cantidadDePeliculasEnCartelera;
-    Pelicula *vecPeliculas;
-    Pelicula *vecPeliCartelera;/// memoria dinamica para eliminar en la otra funcion
-    int pos=0;
-/// ----> conseguimos los datos necesarios
-    cantidadDePeliculas=_archiPeli.getCantidadPeliculas();
-    cantidadDePeliculasEnCartelera=_archiPeli.getCantidadPeliculasEnCartelera();
-    vecPeliculas=new Pelicula[cantidadDePeliculas];
-    if (vecPeliculas == nullptr)
-    {
+Pelicula* ManagerPeliculas::traerPeliculasEnCartelera() {
+    int total, enCartelera;
+    total = _archiPeli.getCantidadPeliculas();
+    enCartelera = _archiPeli.getCantidadPeliculasEnCartelera();
+
+    Pelicula* todas = cargarTodasLasPeliculas(total);
+    if(!todas) return nullptr;
+
+    Pelicula* cartelera = new Pelicula[enCartelera];
+    if(cartelera == nullptr) {
         cout << "No se pudo reservar memoria para las películas." << endl;
-    }/// se valido la obtencion de memoria
-    vecPeliCartelera=new Pelicula[cantidadDePeliculasEnCartelera];
-    if (vecPeliCartelera == nullptr)
-    {
-        cout << "No se pudo reservar memoria para las películas." << endl;
-    }/// se valido la obtencion de memoria
-    if(_archiPeli.leerTodas(vecPeliculas,cantidadDePeliculas))
-    {
-        /// falta validar si consiguio memoria
-        for(int i=0; i<cantidadDePeliculas; i++)
-        {
-            if(vecPeliculas[i].getEstado())
-            {
-                vecPeliCartelera[pos]=vecPeliculas[i];
-                pos++;
-            }
+        delete[] todas;
+        return nullptr;
+    }
+
+    int pos = 0;
+    for(int i = 0; i < total; i++) {
+        if(todas[i].getEstado()) {
+            cartelera[pos++] = todas[i];
         }
     }
-    else
-    {
-        cout << "NO SE PUDIERON LEER LAS PELICULAS" << endl;
-    }
-    delete[] vecPeliculas;
-    return vecPeliCartelera;
+
+    delete[] todas;
+    return cartelera;
 }
 /// retornar la cantidad de peliculas que hay en cartelera
-int ManagerPeliculas::cantidadPeliculasEnCartelera()
-{
-    int cantidadDePeliculasEnCartelera;
-    cantidadDePeliculasEnCartelera=_archiPeli.getCantidadPeliculasEnCartelera();
-    return cantidadDePeliculasEnCartelera;
+int ManagerPeliculas::cantidadPeliculasEnCartelera() {
+    return _archiPeli.getCantidadPeliculasEnCartelera();
 }
 

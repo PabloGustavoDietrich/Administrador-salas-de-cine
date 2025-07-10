@@ -5,17 +5,20 @@
 #include <string>
 class ManagerPeliculas{
 public:
+    void pausarYLimpiar();
+    Pelicula* cargarTodasLasPeliculas(int& cantidad);
     void cargarPelicula();
     void mostrarPeliculas();
-    void mostrarPeliculasPorID();
-    int buscarPosicionPeliculaPorID();
-    void sacarDeCartelera();
-    void ponerEnCartelera();
-    Pelicula* traerPeliculasEnCartelera();
+    void mostrarPeliculasCartelera(bool enCartelera);
     void mostrarPeliculasEnCartelera();
     void mostrarPeliculasSinCartelera();
-    int cantidadPeliculasEnCartelera();
-    bool verificarSiExiste(string nombrePelicula);
+    int buscarPosicionPeliculaPorID();
+    void mostrarPeliculasPorID();
+    void sacarDeCartelera();
+    void ponerEnCartelera();
+    Pelicula* traerPeliculasEnCartelera();/// verificar utilidad
+    int cantidadPeliculasEnCartelera();///posible funcion a eliminar
+
 private:
     ArchivoPelicula _archiPeli;
 
