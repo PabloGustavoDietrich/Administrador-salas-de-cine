@@ -110,7 +110,7 @@ bool Pelicula::cargarPelicula()
         esDatoValido=apellidoDelDirector.length() > 0 && apellidoDelDirector.length() < TAMANIOCHARMEDIO;
         if(esDatoValido)
         {
-            setNombreDelDirector(apellidoDelDirector);
+            setApellidoDelDirector(apellidoDelDirector);
             contadorDeErrores=0;
             break;
         }
