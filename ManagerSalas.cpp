@@ -7,80 +7,10 @@ using namespace std;
 /// resuelve la opcion 1 del menu
 void ManagerSalas::CargarSala()
 {
-    bool banderaDeCarga=true;
-    bool banderaDeError=false;
-    int numeroSala;
-    string nombreSala;
-    int tipo;
-    int estado;
-    Sala reg;
-
-/// COMO SOLO DAMOS BAJAS DE MANTENIMIENTO LOGICAS Y NO ELIMINAMOS NADA
-    numeroSala=_archivoSalas.getCantidadSalas()+1;/// se retorna 0 si no puede leer el archivo
-    reg.setnumero(numeroSala);
-
-
-
-    while(banderaDeCarga&&!banderaDeError)
+    Sala registro;
+    if(registro.cargarSala())
     {
-        cout<< "Ingrese el nombre de la Sala: "<<endl;
-        cin.ignore();
-        getline(cin,nombreSala);/// validar igual que hoy
-        banderaDeError=reg.setnombre(nombreSala);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga del nombre de la sala, (precione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-        }
-    }
-    banderaDeError=false;/// seteamos la bandera a false para la siguiente carga de datos
-
-
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "Ingrese el tipo de Sala(1:Estandar,2:Premium,3:Confort Plus): "<<endl;
-        cin>> tipo;
-        banderaDeError=reg.settipo(tipo);
-        if(!banderaDeError)
-        {
-            cout<<"Error con la carga del tipo de la sala, (precione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-        }
-    }
-    banderaDeError=false;/// seteamos la bandera a false para la siguiente carga de datos
-
-
-
-    while(banderaDeCarga&&!banderaDeError)
-    {
-        cout<< "Ingrese estado de la sala : (si no esta diponible 0, si esta disponible 1)"<<endl;
-        cin>> estado;
-
-        if(estado==1||estado==0)
-        {
-            reg.setEstado(estado);
-            banderaDeError=true;
-        }
-        else
-        {
-            cout<<"Error con la carga del estado de la sala, (precione 1 si desea seguir intentando o 0 si desea dejar de cargar y salir)"<<endl;
-            cin>>banderaDeCarga;
-        }
-    }
-    banderaDeError=false;/// seteamos la bandera a false para la siguiente carga de datos
-
-    ///por defecto cuando creamos una sala todas las butacas las seteamos a false
-    reg.setButacas();
-
-    //reg=Sala(numeroSala,nombreSala,tipo,estado);
-
-    cout <<"_________________________" << endl;
-    cout << endl;
-
-    if(banderaDeCarga&&!banderaDeError)
-    {
-        if(_archivoSalas.guardarSala(reg))
+        if(_archivoSalas.guardarSala(registro))
         {
             cout<< "LA SALA SE GUARDO CORRECTAMENTE"<<endl;
         }
@@ -88,6 +18,10 @@ void ManagerSalas::CargarSala()
         {
             cout<< "ERROR AL GUARDAR LA SALA"<<endl;
         }
+    }
+    else
+    {
+        cout<< "NO SE PUDO CARGAR LA SALA CORRECTAMENTE"<<endl;
     }
 
     system("pause");
@@ -103,10 +37,10 @@ void ManagerSalas::MostrarSalas()
     cantidadDeSalas=_archivoSalas.getCantidadSalas();
     vecSala=new Sala[cantidadDeSalas];
     if (vecSala == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las salas." << endl;
-            return;
-        }/// se valido la optencion de memoria
+    {
+        cout << "No se pudo reservar memoria para las salas." << endl;
+        return;
+    }/// se valido la optencion de memoria
     if(_archivoSalas.leerTodas(vecSala,cantidadDeSalas))
     {
         for(int i=0; i <cantidadDeSalas; i++)
@@ -129,17 +63,8 @@ void ManagerSalas::MostrarSala(Sala reg)
 {
     cout<< "SALA #: "<<reg.getnumero()<<endl;
     cout<< "EL NOMBRE DE LA SALA ES: "<< reg.getnombre()<<endl;
-    switch(reg.gettipo())
-    {
-    case 1:
-        cout<< "LA SALA ES ESTANDAR"<<endl;
-        break;
-    case 2:
-        cout<< "LA SALA ES PREMIUM"<<endl;
-        break;
-    case 3:
-        cout<< "LA SALA ES COMFORT PLUS"<<endl;
-    }
+    cout<< "LA SALA ES :"<< reg.gettipo()<<endl;
+
     if(reg.getEstadoSala())
     {
         cout<< "LA SALA ESTA ACTIVA"<<endl;
@@ -187,10 +112,10 @@ int ManagerSalas::buscarPosicionSalaPorNumero(int numeroSala)/// TAL VEZ CON PAR
     cantidadDeSalas=_archivoSalas.getCantidadSalas();
     vecSala=new Sala[cantidadDeSalas];
     if (vecSala == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las salas." << endl;
-            return -1;
-        }/// se valido la optencion de memoria
+    {
+        cout << "No se pudo reservar memoria para las salas." << endl;
+        return -1;
+    }/// se valido la optencion de memoria
     _archivoSalas.leerTodas(vecSala,cantidadDeSalas);
 
     for(int i=0; i<cantidadDeSalas; i++)
@@ -259,10 +184,10 @@ void ManagerSalas::MostrarSalasActivas()
     cantidadDeSalas=_archivoSalas.getCantidadSalas();
     vecSala=new Sala[cantidadDeSalas];
     if (vecSala == nullptr)
-        {
-            cout << "No se pudo reservar memoria para las salas." << endl;
-            return;
-        }/// se valido la optencion de memoria
+    {
+        cout << "No se pudo reservar memoria para las salas." << endl;
+        return;
+    }/// se valido la optencion de memoria
     if(_archivoSalas.leerTodas(vecSala,cantidadDeSalas))
     {
         for(int i=0; i <cantidadDeSalas; i++)

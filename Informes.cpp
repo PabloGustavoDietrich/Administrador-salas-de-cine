@@ -134,43 +134,52 @@ void Informes::mostrarCantidadDeEntradasVendidasPorTipoDeSala()
     int cantidadSalas;
     Sala *vecSalas;
 
-    string listaDeTipoDeSala[]= {"estandar","premium","comfort plus"};
+    string listaDeTipoDeSala[]= {"estandar","premium","confort plus"};
     const int TAMANIO=3;
     int vecContadores[TAMANIO]= {0};
 
     cantidadEntradas=_archivoEntrada.getCantidadDeEntradas();
     cantidadSalas=_archivoSala.getCantidadSalas();
-    if(cantidadEntradas>0&&cantidadSalas>0){
-    vecEntradas= new Entrada[cantidadEntradas];
-    vecSalas=new Sala[cantidadSalas];
-
-    _archivoEntrada.leerTodas(vecEntradas,cantidadEntradas);
-    _archivoSala.leerTodas(vecSalas,cantidadSalas);
-
-    /// PROCESO DE CUENTAS
-    for(int i=0; i<cantidadEntradas; i++)
+    if(cantidadEntradas>0&&cantidadSalas>0)
     {
-        for(int j=0; j<cantidadSalas; j++)
+        vecEntradas= new Entrada[cantidadEntradas];
+        vecSalas=new Sala[cantidadSalas];
+
+        _archivoEntrada.leerTodas(vecEntradas,cantidadEntradas);
+        _archivoSala.leerTodas(vecSalas,cantidadSalas);
+
+        /// PROCESO DE CUENTAS
+        for(int i=0; i<cantidadEntradas; i++)
         {
-            /// PREGUNTAMOS SI EL NUMERO DE LA SALA COINCIDE
-            if (vecSalas[j].getnumero()==vecEntradas[i].getNumeroDeSala())
+            for(int j=0; j<cantidadSalas; j++)
             {
-                vecContadores[vecSalas[j].gettipo()-1]++;
+                /// PREGUNTAMOS SI EL NUMERO DE LA SALA COINCIDE
+                if (vecSalas[j].getnumero()==vecEntradas[i].getNumeroDeSala())
+                {
+                    for(int k=0; k<TAMANIO; k++)
+                    {
+                        if(vecSalas[j].gettipo()==listaDeTipoDeSala[k])
+                        {
+                            vecContadores[k]++;
+
+                        }
+                    }
+                }
             }
         }
-    }
 
-    /// PROCESO DE MUESTRA
-    for(int i=0; i<TAMANIO; i++)
+        /// PROCESO DE MUESTRA
+        for(int i=0; i<TAMANIO; i++)
+        {
+            cout<<"Del tipo de sala: "<<listaDeTipoDeSala[i]<< ", se vendieron: "<<vecContadores[i]<< ", entradas."<<endl;
+            cout<<"================="<<endl;
+        }
+
+        delete[] vecEntradas;
+        delete[] vecSalas;
+    }
+    else
     {
-        cout<<"Del tipo de sala: "<<listaDeTipoDeSala[i]<< ", se vendieron: "<<vecContadores[i]<< ", entradas."<<endl;
-        cout<<"================="<<endl;
-    }
-
-    delete[] vecEntradas;
-    delete[] vecSalas;
-    }
-    else{
         cout<<"FALTAN DATOS PARA REALIZAR EL INFORME"<<endl;
     }
     system("pause");
