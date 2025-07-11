@@ -153,7 +153,7 @@ bool Pelicula::cargarPelicula()
         int clasificacionElegida;
         cout<< "ingrese el numero de la clasificacion de la pelicula: (1= ATP, 2= mayores de 14 o 3= mayores de 18)"<<endl;
         cin>>clasificacionElegida;
-        cin.ignore();
+        cin.ignore();/// falta la funcion de  ingresar un numero seguro
         switch(clasificacionElegida)
         {
         case 1:
@@ -196,7 +196,7 @@ bool Pelicula::cargarPelicula()
     {
         cout<<"LA PELICULA ESTA EN CARTELERA (1 si esta, 0 sino esta) "<<endl;
         cin>>estado;
-        cin.ignore();
+        cin.ignore();/// funcion numero seguro
         esDatoValido=estado==0||estado==1;
         if(esDatoValido)
         {

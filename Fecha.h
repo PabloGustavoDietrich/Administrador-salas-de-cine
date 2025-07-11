@@ -11,9 +11,12 @@ public:
     void mostrarFecha();
     int validarEntero();
     bool esFechaValida(int dia, int mes, int anio);
-    int getDia();
-    int getMes();
-    int getAnio();
+    bool operator==(const Fecha& otra) const;
+
+    int getDia()const;
+    int getMes()const;
+    int getAnio()const;
+
     void setDia(int dia);
     void setMes(int mes);
     void setAnio(int anio);

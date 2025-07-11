@@ -37,11 +37,6 @@ bool Sala::getEstadoSala()
 }
 
 
-
-/*bool (*Sala::getButacas())[COLUMNAS]  ///esto va con filas y columnas constantes..
-{
-    return _butacas;
-}*/
 bool Sala::getButaca(int fila,int columna)
 {
     return _butacas[fila][columna];

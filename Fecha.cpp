@@ -56,6 +56,10 @@ void Fecha::mostrarFecha()
     cout<< getDia() << "/"<< getMes()<< "/"<< getAnio()<<endl;
 }
 
+bool Fecha::operator==(const Fecha& otra) const {
+    return getDia()  == otra.getDia() && getMes()  == otra.getMes() && getAnio() == otra.getAnio();
+}
+
 int Fecha::validarEntero(){/// podrias mas adelante mandar el contador por referencia
     int entero;
 
@@ -107,15 +111,15 @@ bool Fecha::esFechaValida(int dia, int mes, int anio)
     return true;
 }
 
-int Fecha::getDia()
+int Fecha::getDia()const
 {
     return _dia;
 }
-int Fecha::getMes()
+int Fecha::getMes()const
 {
     return _mes;
 }
-int Fecha::getAnio()
+int Fecha::getAnio()const
 {
     return _anio;
 }

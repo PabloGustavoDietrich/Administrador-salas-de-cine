@@ -15,7 +15,7 @@
 
 1750259502 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\constante.h
 
-1752008575 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
+1752259823 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
 
 1750777108 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.cpp
 	<iostream>
@@ -129,13 +129,13 @@
 	<iostream>
 	"Menu.h"
 
-1752161221 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
+1752167283 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\pelicula.cpp
 	<iostream>
 	<cstring>
 	"Pelicula.h"
 	"ArchivoPelicula.h"
 
-1750771392 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.cpp
+1752259611 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.cpp
 	<iostream>
 	"Sala.h"
 	"Constante.h"
