@@ -38,8 +38,9 @@
 	"Pelicula.h"
 	"Sala.h"
 
-1750771436 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.h
+1752260893 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.h
 	"Constante.h"
+	"Fecha.h"
 	<string>
 
 1750817936 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivosala.cpp
@@ -141,7 +142,7 @@
 	"Constante.h"
 	<cstring>
 
-1752160002 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
+1752259823 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
 	<iostream>
 	<limits>
 	"Fecha.h"

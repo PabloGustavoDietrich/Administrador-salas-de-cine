@@ -7,13 +7,14 @@ using namespace std;
 
 Sala::Sala() {}
 
-Sala::Sala(int numero,string nombre,int tipo,bool estadoSala)
+Sala::Sala(int numero,string nombre,int tipo,bool estadoSala,Fecha fechaAsignada)
 {
     setnumero(numero);
     setnombre(nombre);
     settipo(tipo);
     setEstado(estadoSala);
     setButacas();
+    setFechaAsignada(fechaAsignada);
 }
 
 int Sala::getnumero()
@@ -40,6 +41,10 @@ bool Sala::getEstadoSala()
 bool Sala::getButaca(int fila,int columna)
 {
     return _butacas[fila][columna];
+}
+
+Fecha Sala::getFechaAsignada(){
+    return _fechaAsignada;
 }
 
 
@@ -88,7 +93,9 @@ void Sala::setEstado(bool estadoSala)
 {
     _estadoSala=estadoSala;
 }
-
+void Sala::setFechaAsignada(Fecha fechaAsignada){
+    _fechaAsignada=fechaAsignada;
+}
 
 
 
