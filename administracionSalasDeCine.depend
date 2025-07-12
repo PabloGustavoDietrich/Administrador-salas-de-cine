@@ -71,12 +71,10 @@
 	"ArchivoPelicula.h"
 	"ArchivoSala.h"
 
-1752260893 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\main.cpp
+1752327339 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\main.cpp
 	<iostream>
 	<cstring>
 	"Menu.h"
-	"Fecha.h"
-	"Pelicula.h"
 
 1750858383 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\menu.h
 	"ManagerPeliculas.h"
@@ -90,7 +88,7 @@
 	"ArchivoPelicula.h"
 	<string>
 
-1750855356 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.h
+1752269535 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.h
 	"Sala.h"
 	"ArchivoSala.h"
 
@@ -111,7 +109,7 @@
 	"Fecha.h"
 	"Constante.h"
 
-1752161342 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+1752283829 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
 	<iostream>
 	"ManagerPeliculas.h"
 	<cstring>
@@ -120,7 +118,7 @@
 	<iostream>
 	"ManagerRespaldo.h"
 
-1752264390 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.cpp
+1752269612 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managersalas.cpp
 	<iostream>
 	"Constante.h"
 	"ManagerSalas.h"
@@ -136,7 +134,7 @@
 	"Pelicula.h"
 	"ArchivoPelicula.h"
 
-1752264506 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.cpp
+1752269653 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\sala.cpp
 	<iostream>
 	"Sala.h"
 	"Constante.h"

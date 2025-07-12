@@ -7,7 +7,6 @@ class ManagerSalas{
 public:
    void CargarSala();
    void MostrarSalas();
-   void MostrarSala(Sala reg);
    int buscarPosicionSalaPorNumero(int numeroSala=0);
    void bajaPorMantenimiento();
    void altaPostMantenimiento();

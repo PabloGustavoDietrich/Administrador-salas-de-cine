@@ -120,6 +120,38 @@ bool Sala::cargarSala(){
     cout << endl;
     return contadorDeErrores<3;
 }
+void Sala::mostrarSala(){
+    cout<< "SALA #: "<<getnumero()<<endl;
+    cout<< "EL NOMBRE DE LA SALA ES: "<< getnombre()<<endl;
+    cout<< "LA SALA ES :"<< gettipo()<<endl;
+    getFechaAsignada().mostrarFecha();
+
+    if(getEstadoSala())
+    {
+        cout<< "LA SALA ESTA ACTIVA"<<endl;
+    }
+    else
+    {
+        cout<< "LA SALA ESTA EN MANTENIMIENTO"<<endl;
+    }
+    for(int i=0; i<FILAS; i++)
+    {
+        cout<<"FILA: "<<i+1<<" :";
+        for(int j=0; j<COLUMNAS; j++)
+        {
+            if(!getButaca(i,j))
+            {
+                cout<< "L ";
+            }
+            else
+            {
+                cout<< "O ";
+            }
+        }
+        cout<<endl;
+    }
+    cout<< "---------------------------"<<endl;
+}
 
 int Sala::getnumero()
 {

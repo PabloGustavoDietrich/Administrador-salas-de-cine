@@ -31,7 +31,6 @@ void ManagerSalas::CargarSala()
 /// resuelve la opcion 2 del menu
 void ManagerSalas::MostrarSalas()
 {
-
     int cantidadDeSalas;
     Sala *vecSala;
     cantidadDeSalas=_archivoSalas.getCantidadSalas();
@@ -45,7 +44,7 @@ void ManagerSalas::MostrarSalas()
     {
         for(int i=0; i <cantidadDeSalas; i++)
         {
-            MostrarSala(vecSala[i]);
+            vecSala[i].mostrarSala();
         }
     }
     else
@@ -54,47 +53,10 @@ void ManagerSalas::MostrarSalas()
         system("pause");
         system("cls");
     }
-
     delete[] vecSala;
 }
 
 /// ayuda en la resolucion de la opcion 2 del menu y a la funcion que muestra la sala que se quiere comprar la entrada
-void ManagerSalas::MostrarSala(Sala reg)
-{
-    cout<< "SALA #: "<<reg.getnumero()<<endl;
-    cout<< "EL NOMBRE DE LA SALA ES: "<< reg.getnombre()<<endl;
-    cout<< "LA SALA ES :"<< reg.gettipo()<<endl;
-
-    if(reg.getEstadoSala())
-    {
-        cout<< "LA SALA ESTA ACTIVA"<<endl;
-    }
-    else
-    {
-        cout<< "LA SALA ESTA EN MANTENIMIENTO"<<endl;
-    }
-    for(int i=0; i<FILAS; i++)
-    {
-        cout<<"FILA: "<<i+1<<" :";
-        for(int j=0; j<COLUMNAS; j++)
-        {
-
-            if(!reg.getButaca(i,j))
-            {
-                cout<< "L ";
-            }
-            else
-            {
-                cout<< "O ";
-            }
-        }
-        cout<<endl;
-    }
-
-    cout<< "---------------------------"<<endl;
-
-}
-
 
 //// resolvemos la opcion 3 del menu; y retorna la posicion esta funcion la usamos para ayudar a resolver la opcion 4 y 5 del menu
 int ManagerSalas::buscarPosicionSalaPorNumero(int numeroSala)/// TAL VEZ CON PARAMETROS POR DEFECTO PODRIA REUTILIZAR ESTA FUNCION
@@ -194,7 +156,7 @@ void ManagerSalas::MostrarSalasActivas()
         {
             if(vecSala[i].getEstadoSala())
             {
-                MostrarSala(vecSala[i]);
+                vecSala[i].mostrarSala();
             }
         }
     }
@@ -217,7 +179,7 @@ void ManagerSalas::mostrarSalaPorNumero(int numeroSala)/// podria enviar un fals
 
     _archivoSalas.leerSala(registro,posicion);/// mandamos la referencia
 
-    MostrarSala(registro);
+    registro.mostrarSala();
 
 }
 /// ESTA FUNCIONA LA USAMOS EN LA COMPRA DE ENTRADAS

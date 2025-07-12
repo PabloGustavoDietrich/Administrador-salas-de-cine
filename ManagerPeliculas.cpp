@@ -29,7 +29,7 @@ Pelicula* ManagerPeliculas::cargarTodasLasPeliculas(int& cantidad) {
 
     return vec;
 }
-
+/// OPCION 1 DEL MENU
 void ManagerPeliculas::cargarPelicula()
 {
     Pelicula registro;
@@ -50,6 +50,7 @@ void ManagerPeliculas::cargarPelicula()
     }
     pausarYLimpiar();
 }
+/// OPCION 2 DEL MENU
 void ManagerPeliculas::mostrarPeliculas() {
     int cantidad;
     Pelicula* vec = cargarTodasLasPeliculas(cantidad);
@@ -61,27 +62,7 @@ void ManagerPeliculas::mostrarPeliculas() {
     delete[] vec;
     pausarYLimpiar();
 }
-
-void ManagerPeliculas::mostrarPeliculasCartelera(bool enCartelera) {
-    int cantidad;
-    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
-    if(!vec) return;
-
-    for(int i = 0; i < cantidad; i++) {
-        if(vec[i].getEstado() == enCartelera) {
-            vec[i].mostrarPeliculaIDYCartelera();
-        }
-    }
-    delete[] vec;
-}
-void ManagerPeliculas::mostrarPeliculasEnCartelera() {
-    mostrarPeliculasCartelera(true);
-}
-
-void ManagerPeliculas::mostrarPeliculasSinCartelera() {
-    mostrarPeliculasCartelera(false);
-}
-
+/// OPCION 3 DEL MENU
 void ManagerPeliculas::mostrarPeliculasPorID() {
     int cantidad;
     Pelicula* vec = cargarTodasLasPeliculas(cantidad);
@@ -122,7 +103,26 @@ int ManagerPeliculas::buscarPosicionPeliculaPorID() {
     cout << "ESE ID NO EXISTE" << endl;
     return -1;
 }
+void ManagerPeliculas::mostrarPeliculasCartelera(bool enCartelera) {
+    int cantidad;
+    Pelicula* vec = cargarTodasLasPeliculas(cantidad);
+    if(!vec) return;
 
+    for(int i = 0; i < cantidad; i++) {
+        if(vec[i].getEstado() == enCartelera) {
+            vec[i].mostrarPeliculaIDYCartelera();
+        }
+    }
+    delete[] vec;
+}
+/// OPCION 6 DEL MENU Y LISTAMOS PARA VER SI SACAMOS ALGUNA DE CARTELERA EN LA OPCION 4 DEL MENU
+void ManagerPeliculas::mostrarPeliculasEnCartelera() {
+    mostrarPeliculasCartelera(true);
+}
+
+void ManagerPeliculas::mostrarPeliculasSinCartelera() {
+    mostrarPeliculasCartelera(false);
+}
 /// OPCION 4 DEL MENU DE PELICULAS
 void ManagerPeliculas::sacarDeCartelera() {
     mostrarPeliculasEnCartelera();
