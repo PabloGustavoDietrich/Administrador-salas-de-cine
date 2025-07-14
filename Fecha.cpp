@@ -59,6 +59,11 @@ void Fecha::mostrarFecha()
 bool Fecha::operator==(const Fecha& otra) const {
     return getDia()  == otra.getDia() && getMes()  == otra.getMes() && getAnio() == otra.getAnio();
 }
+bool Fecha::operator<(const Fecha& otra) const {
+    if (getAnio() != otra.getAnio()) return getAnio() < otra.getAnio();
+    if (getMes() != otra.getMes()) return getMes() < otra.getMes();
+    return getDia() < otra.getDia();
+}
 
 int Fecha::validarEntero(){/// podrias mas adelante mandar el contador por referencia
     int entero;

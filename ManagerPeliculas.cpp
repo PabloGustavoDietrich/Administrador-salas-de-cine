@@ -2,7 +2,6 @@
 using namespace std;
 #include "ManagerPeliculas.h"
 #include <cstring>
-
 void ManagerPeliculas::pausarYLimpiar() {
     system("pause");
     system("cls");
@@ -58,6 +57,7 @@ void ManagerPeliculas::mostrarPeliculas() {
 
     for(int i = 0; i < cantidad; i++) {
         vec[i].mostrarPelicula();
+
     }
     delete[] vec;
     pausarYLimpiar();
@@ -76,7 +76,6 @@ void ManagerPeliculas::mostrarPeliculasPorID() {
     if(pos != -1) {
         vec[pos].mostrarPeliculaYID();
     }
-
     delete[] vec;
     pausarYLimpiar();
 }

@@ -15,7 +15,7 @@
 
 1750259502 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\constante.h
 
-1752259823 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
+1752508122 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
 
 1750777108 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.cpp
 	<iostream>
@@ -109,7 +109,7 @@
 	"Fecha.h"
 	"Constante.h"
 
-1752283829 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+1752498298 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
 	<iostream>
 	"ManagerPeliculas.h"
 	<cstring>
