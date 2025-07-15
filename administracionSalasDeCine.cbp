@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="AchivoEntrada.cpp" />
 		<Unit filename="ArchivoEntrada.h" />
+		<Unit filename="ArchivoGenero.cpp" />
+		<Unit filename="ArchivoGenero.h" />
 		<Unit filename="ArchivoPelicula.cpp" />
 		<Unit filename="ArchivoPelicula.h" />
 		<Unit filename="ArchivoRespaldo.cpp" />
@@ -45,6 +47,8 @@
 		<Unit filename="Entrada.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="Genero.cpp" />
+		<Unit filename="Genero.h" />
 		<Unit filename="Informes.cpp" />
 		<Unit filename="Informes.h" />
 		<Unit filename="ManagerEntrada.cpp" />

@@ -15,7 +15,7 @@
 
 1750259502 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\constante.h
 
-1752508122 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
+1752517721 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.h
 
 1750777108 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\archivopelicula.cpp
 	<iostream>
@@ -109,7 +109,7 @@
 	"Fecha.h"
 	"Constante.h"
 
-1752498298 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
+1752500458 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\managerpeliculas.cpp
 	<iostream>
 	"ManagerPeliculas.h"
 	<cstring>
@@ -141,8 +141,17 @@
 	<cstring>
 	"ArchivoSala.h"
 
-1752259823 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
+1752517720 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\fecha.cpp
 	<iostream>
 	<limits>
+	<ctime>
 	"Fecha.h"
+
+1752518350 source:c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\genero.cpp
+	<iostream>
+	"Genero.h"
+	<cstring>
+
+1752518305 c:\users\pablo\onedrive\escritorio\tp para la defensa\administrador salas de cine\genero.h
+	"Constante.h"
 

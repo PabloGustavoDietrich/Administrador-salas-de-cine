@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <ctime>
 using namespace std;
 #include "Fecha.h"
 
@@ -54,6 +55,14 @@ bool Fecha::cargarFecha()/// capaz con un bool deberia evitar q se guarde el obj
 void Fecha::mostrarFecha()
 {
     cout<< getDia() << "/"<< getMes()<< "/"<< getAnio()<<endl;
+}
+void Fecha::setHoy() {
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+
+    setDia(now->tm_mday);
+    setMes(now->tm_mon + 1);
+    setAnio(now->tm_year + 1900);
 }
 
 bool Fecha::operator==(const Fecha& otra) const {

@@ -11,6 +11,7 @@ public:
     void mostrarFecha();
     int validarEntero();
     bool esFechaValida(int dia, int mes, int anio);
+    void setHoy();
     bool operator==(const Fecha& otra) const;
     bool operator<(const Fecha& otra) const;
 
