@@ -4,7 +4,9 @@ using namespace std;
 #include "Entrada.h"
 #include "Pelicula.h"
 #include "Sala.h"
+#include "Genero.h"
 #include <cstring>
+#include <iomanip>
 
 void Informes::mostrarCantidadDeEntradasVendidas()
 {
@@ -19,20 +21,24 @@ void Informes::mostrarCantidadEntradasVendidasPorgenero()
     Entrada *vecEntradas;
     int cantidadPeliculas;
     Pelicula *vecPeliculas;
+    int cantidadGeneros;
+    Genero *vecGenero;
+    int *vecContadores;
 
-    string listaDeGeneros[]= {"accion","ciencia ficcion","terror","belico","fantasia","comedia","romantico","western","thriller"};
-    const int TAMANIO=9;
-    int vecContadores[TAMANIO]= {0};
-
+    cantidadGeneros=_archivoGenero.getCantidadGeneros();
     cantidadEntradas=_archivoEntrada.getCantidadDeEntradas();
     cantidadPeliculas=_archivoPelicula.getCantidadPeliculas();
-    if(cantidadEntradas>0&&cantidadPeliculas>0)
+
+    if(cantidadEntradas>0&&cantidadPeliculas>0&&cantidadGeneros>0)
     {
-        vecEntradas= new Entrada[cantidadEntradas];
+        vecEntradas=new Entrada[cantidadEntradas];
         vecPeliculas=new Pelicula[cantidadPeliculas];
+        vecGenero=new Genero[cantidadGeneros];
+        vecContadores=new int[cantidadGeneros]{};
 
         _archivoEntrada.leerTodas(vecEntradas,cantidadEntradas);
         _archivoPelicula.leerTodas(vecPeliculas,cantidadPeliculas);
+        _archivoGenero.leerTodas(vecGenero,cantidadGeneros);
 /// PROCESO DE CUENTAS
         for(int i=0; i<cantidadEntradas; i++)
         {
@@ -41,9 +47,9 @@ void Informes::mostrarCantidadEntradasVendidasPorgenero()
                 /// PREGUNTAMOS SI EL ID DE LA PELICULA ES IGUAL AL DE LA ENTRADA COMPRADA
                 if (vecPeliculas[j].getNumeroDeID()==vecEntradas[i].getIDPelicula())
                 {
-                    for(int k=0; k<TAMANIO; k++)
+                    for(int k=0; k<cantidadGeneros; k++)
                     {
-                        if(vecPeliculas[j].getGeneroPelicula()==listaDeGeneros[k])
+                        if(vecPeliculas[j].getGeneroPelicula()==vecGenero[k].getNombreGenero())
                         {
                             vecContadores[k]++;
                         }
@@ -52,12 +58,13 @@ void Informes::mostrarCantidadEntradasVendidasPorgenero()
             }
         }
 /// PROCESO DE MUESTRA
-        for(int i=0; i<TAMANIO; i++)
+        for(int i=0; i<cantidadGeneros; i++)
         {
-            cout<<"Del Genero: "<<listaDeGeneros[i]<< ", se vendieron: "<<vecContadores[i]<< ", entradas."<<endl;
+            cout<<"Del Genero: "<<vecGenero[i].getNombreGenero()<< ", se vendieron: "<<vecContadores[i]<< ", entradas."<<endl;
             cout<<"==========="<<endl;
         }
-
+        delete[] vecGenero;
+        delete[] vecContadores;
         delete[] vecEntradas;
         delete[] vecPeliculas;
     }
@@ -94,7 +101,8 @@ void Informes::mostrarCantidadDeEntradasVendidasPorTitulo()
             listaDeTitulos[i]=vecPeliculas[i].getNombrePelicula();
         }
 
-        int vecContadores[cantidadPeliculas]= {0};
+        int *vecContadores;
+        vecContadores=new int [cantidadPeliculas]{};
 /// PROCESO DE CUENTAS
         for(int i=0; i<cantidadEntradas; i++)
         {
@@ -118,6 +126,7 @@ void Informes::mostrarCantidadDeEntradasVendidasPorTitulo()
         delete[] vecEntradas;
         delete[] vecPeliculas;
         delete[] listaDeTitulos;
+        delete[] vecContadores;
     }
     else
     {
@@ -184,4 +193,38 @@ void Informes::mostrarCantidadDeEntradasVendidasPorTipoDeSala()
     }
     system("pause");
     system("cls");
+}
+void Informes::mostrarRecaudacion(){
+ int cantidadEntradas=_archivoEntrada.getCantidadDeEntradas();
+ Entrada *vecEntradas;
+ vecEntradas=new Entrada[cantidadEntradas];
+ if(vecEntradas==nullptr){
+    return;
+ }
+string vecMeses[12]={"enero", "febrero", "marzo","abril", "mayo", "junio", "julio", "agosto", "septiembre","octubre","noviembre","diciembre"};
+
+_archivoEntrada.leerTodas(vecEntradas, cantidadEntradas);
+
+float recMensual[12]={};
+float recTotal=0;
+for(int i=0;i<cantidadEntradas;i++){
+    recMensual[vecEntradas[i].getFechaDeProyeccion().getMes()-1]+=vecEntradas[i].getPrecio();
+}
+for(int i=0;i<12;i++){
+    recTotal+=recMensual[i];
+}
+for(int i=0;i<12;i++){
+
+    cout<<"En el mes "<<vecMeses[i]<< " se recaudo: $ "<<recMensual[i]<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<<endl;
+}
+cout << fixed << setprecision(2);
+cout<<"*****************************************"<<endl;
+cout<<"La recaudacion total fue: $ "<<recTotal<<endl;
+cout<<"*****************************************"<<endl;
+delete[] vecEntradas;
+system("pause");
+system("cls");
+
 }

@@ -190,3 +190,56 @@ void ManagerRespaldo::traerElRespaldoDeSalas()
     system("pause");
     system("cls");
 }
+
+void ManagerRespaldo::crearNuevoRespaldoClientes()
+{
+    int cantidad;
+    Clientes *vecClientes;
+    cantidad=_archivoClientes.getCantidadClientes();
+    if(cantidad>0)
+    {
+        vecClientes=new Clientes[cantidad];
+        if(vecClientes==nullptr)
+        {
+            cout<<"La reserva de memoria para clientes no fue posible."<<endl;
+            return;
+        }
+        _archivoClientes.leerTodo(vecClientes, cantidad);
+        if(_archivoBackUP.respaldoClientes(vecClientes, cantidad))
+        {
+            cout<< "RESPALDO CREADO CON EXITO"<<endl;
+        }
+        delete[] vecClientes;
+
+    }
+    else
+    {
+        cout<< "NO HAY ARCHIVOS PARA RESPALDAR"<<endl;
+    }
+    system("pause");
+    system("cls");
+}
+
+void ManagerRespaldo::traerElRespaldoDeClientes()
+{
+    int cantidad;
+    Clientes *vecClientes;
+    cantidad=_archivoBackUP.getCantidadDeClientesRespaldo();
+    if(cantidad>0){
+        vecClientes= new Clientes[cantidad];
+        if(vecClientes==nullptr){
+            cout << "No se pudo reservar memoria para clientes." << endl;
+            return;
+        }
+        _archivoBackUP.recuperarClientes(vecClientes,cantidad);
+        if(_archivoClientes.guardarClientes(vecClientes,cantidad)){
+            cout<< "ARCHIVO RECUPERADO CON EXITO"<<endl;
+        }
+        delete[] vecClientes;
+
+    }else{
+      cout<< "NO HAY REGISTROS PARA RECUPERAR"<<endl;
+    }
+system("pause");
+    system("cls");
+}

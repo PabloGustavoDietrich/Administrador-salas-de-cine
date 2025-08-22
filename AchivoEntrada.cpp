@@ -8,7 +8,7 @@ ArchivoEntrada::ArchivoEntrada(string nombreArchivo)
     _nombreArchivo=nombreArchivo;
 }
 /// VOLVEMOS A USAR ESTA FUNCION POR TEMAS DE VALIDACION SI QUISIERAMOS GUARDAR VECTORES
-   bool ArchivoEntrada::guardarEntrada(Entrada reg){
+bool ArchivoEntrada::guardarEntrada(Entrada reg){
         FILE *pFile;
         bool registro;
 
@@ -23,7 +23,7 @@ ArchivoEntrada::ArchivoEntrada(string nombreArchivo)
         return registro;
     }
 /// guardamos veector de entradas compradas
-/*bool ArchivoEntrada::guardarEntradasCompradas(Entrada reg[],int cantidad)
+bool ArchivoEntrada::guardarEntradasCompradas(Entrada reg[],int cantidad)
 {
     FILE *pFile;
     bool registro;
@@ -39,7 +39,7 @@ ArchivoEntrada::ArchivoEntrada(string nombreArchivo)
 
     return registro;
 }
-*/
+
 
 /// SOBREESCRITURA DEL ARCHIVO ENTRADAS ( ESTA FUNCION LA USAMOS CON LOS BACKUPS
 bool ArchivoEntrada::guardarEntradas(Entrada reg[],int cantidad)

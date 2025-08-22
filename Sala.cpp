@@ -158,6 +158,27 @@ void Sala::mostrarSalaNumeroEstadoYFecha(){
     if(!getEstadoSala())cout<< "LA SALA ESTA EN MANTENIMIENTO"<<endl;
     getFechaAsignada().mostrarFecha();
 }
+void Sala::mostrarNombreTipoYButacas(){
+    cout<< "EL NOMBRE DE LA SALA ES: "<< getnombre()<<endl;
+    cout<< "LA SALA ES :"<< gettipo()<<endl;
+    for(int i=0; i<FILAS; i++)
+    {
+        cout<<"FILA: "<<i+1<<" :";
+        for(int j=0; j<COLUMNAS; j++)
+        {
+            if(!getButaca(i,j))
+            {
+                cout<< "L ";
+            }
+            else
+            {
+                cout<< "O ";
+            }
+        }
+        cout<<endl;
+    }
+    cout<< "---------------------------"<<endl;
+}
 
 int Sala::getnumero()
 {

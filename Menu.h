@@ -5,12 +5,16 @@
 #include "ManagerEntrada.h"
 #include "ManagerRespaldo.h"
 #include "Informes.h"
+#include "ManagerGenero.h"
+#include "ManagerClientes.h"
 class Menu{
 public:
     void mostrarMenuPrincipal();
     void menuPelicula();
     void menuSalas();
     void menuEntradas();
+    void menuGenero();
+    void menuCliente();
     void menuRespaldo();
     void menuInformes();
 private:
@@ -18,6 +22,8 @@ private:
     int _opcionPelicula;
     int _opcionSala;
     int _opcionEntrada;
+    int _opcionGenero;
+    int _opcionCliente;
     int _opcionRespaldo;
     int _opcionInforme;
 
@@ -26,6 +32,8 @@ private:
     ManagerEntrada _managerEntradas;
     ManagerRespaldo _managerRespaldo;
     Informes _informe;
+    ManagerGenero _managerGenero;
+    ManagerClientes _managerCliente;
 };
 
 #endif // MENU_H_INCLUDED

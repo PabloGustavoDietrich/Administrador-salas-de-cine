@@ -157,3 +157,40 @@ bool ArchivoRespaldo::recuperarSalas(Sala reg[],int cantidad)
 }
 
 
+bool ArchivoRespaldo::respaldoClientes(Clientes reg[], int cantidad){
+FILE *pFile;
+bool respaldo;
+pFile=fopen("respaldoClientes.dat","wb");
+if(pFile==nullptr){
+    return false;
+}
+respaldo=fwrite(reg,sizeof(Clientes), cantidad,pFile);
+fclose(pFile);
+return respaldo;
+}
+
+int ArchivoRespaldo::getCantidadDeClientesRespaldo(){
+int cantidad;
+FILE *pFile;
+pFile=fopen("respaldoClientes.dat","rb");
+if(pFile==nullptr){
+    return -1;
+}
+fseek(pFile,0,SEEK_END);
+cantidad=ftell(pFile)/sizeof(Clientes);
+fclose(pFile);
+return cantidad;
+}
+
+bool ArchivoRespaldo::recuperarClientes(Clientes reg[], int cantidad){
+FILE *pFile;
+bool respaldo;
+pFile=fopen("respaldoClientes.dat","rb");
+if(pFile==nullptr){
+    return false;
+}
+respaldo=fread(reg,sizeof(Clientes),cantidad,pFile);
+fclose(pFile);
+return respaldo;
+}
+

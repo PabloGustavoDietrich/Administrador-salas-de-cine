@@ -33,6 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="AchivoEntrada.cpp" />
+		<Unit filename="Archivo.cpp" />
+		<Unit filename="ArchivoClientes.cpp" />
+		<Unit filename="ArchivoClientes.h" />
 		<Unit filename="ArchivoEntrada.h" />
 		<Unit filename="ArchivoGenero.cpp" />
 		<Unit filename="ArchivoGenero.h" />
@@ -42,6 +45,8 @@
 		<Unit filename="ArchivoRespaldo.h" />
 		<Unit filename="ArchivoSala.cpp" />
 		<Unit filename="ArchivoSala.h" />
+		<Unit filename="Clientes.cpp" />
+		<Unit filename="Clientes.h" />
 		<Unit filename="Constante.h" />
 		<Unit filename="Entrada.cpp" />
 		<Unit filename="Entrada.h" />
@@ -51,8 +56,12 @@
 		<Unit filename="Genero.h" />
 		<Unit filename="Informes.cpp" />
 		<Unit filename="Informes.h" />
+		<Unit filename="ManagerCliente.cpp" />
+		<Unit filename="ManagerClientes.h" />
 		<Unit filename="ManagerEntrada.cpp" />
 		<Unit filename="ManagerEntrada.h" />
+		<Unit filename="ManagerGenero.cpp" />
+		<Unit filename="ManagerGenero.h" />
 		<Unit filename="ManagerPeliculas.cpp" />
 		<Unit filename="ManagerPeliculas.h" />
 		<Unit filename="ManagerRespaldo.cpp" />

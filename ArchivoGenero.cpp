@@ -55,6 +55,22 @@ bool ArchivoGenero::leerTodas(Genero reg[],int cantidad)
 
     return leyo;
 }
+bool ArchivoGenero::leerGenero(Genero &reg,int posicion)///mandamos la referencia
+{
+    FILE *pFile;
+    bool leyo;
+    pFile=fopen(_nombreArchivo.c_str(),"rb");
+    if(pFile==nullptr)
+    {
+        return false;
+    }
+    fseek(pFile, posicion * sizeof(Genero), SEEK_SET);
+    leyo=fread(&reg,sizeof(Genero),1,pFile);
+
+    fclose(pFile);
+
+    return leyo;
+}
 
 bool ArchivoGenero::bajaLogicaGenero(Genero reg, int poscicion)
 {

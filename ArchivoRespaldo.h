@@ -3,7 +3,7 @@
 #include "Entrada.h"
 #include "Pelicula.h"
 #include "Sala.h"
-
+#include "Clientes.h"
 class ArchivoRespaldo{
 public:
     bool respaldoEntradas(Entrada reg[],int cantidad);
@@ -15,6 +15,10 @@ public:
     bool respaldoSalas(Sala reg[],int cantidad);
     int getCantidadDeSalasDeRespaldo();
     bool recuperarSalas(Sala reg[],int cantidad);
+
+    bool respaldoClientes(Clientes reg[], int cantidad);
+    int getCantidadDeClientesRespaldo();
+    bool recuperarClientes(Clientes reg[], int cantidad);
 };
 
 #endif // ARCHIVORESPALDO_H_INCLUDED

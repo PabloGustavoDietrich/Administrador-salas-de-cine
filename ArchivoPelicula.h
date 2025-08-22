@@ -8,10 +8,12 @@ public:
     bool guardarPelicula(Pelicula reg);
     bool guardarPeliculas(Pelicula reg[],int cantidad);
     int getCantidadPeliculas();
-    int getCantidadPeliculasEnCartelera();
     bool leerTodas(Pelicula reg[],int cantidad);
     bool bajaLogicaPelicula(Pelicula reg, int poscicion);
     bool altaLogicaPelicula(Pelicula reg, int poscicion);
+    int getCantidadPeliculasEnCartelera();
+
+    void leerPeliculasEnCartelera(Pelicula reg[]);
 private:
     string _nombreArchivo;
 };

@@ -5,11 +5,6 @@
 
 class ManagerSalas{
 public:
-   void mostrarSalaConNumero(int numeroSala,int& contadorDeSalasFueraDeServicio);
-   bool validaEstadoSala(int numeroSala);
-   bool comprarButaca(int numeroSala,int fila,int butaca); ///cambie de void a bool para el while de manager entradas
-   int cantidadDeSalas();
-   /// despues de la refactorizacion
     void pausarYLimpiar();
     void cargarSala();
     Sala* leerTodasLasSalas(int &cantidad);
@@ -24,7 +19,5 @@ private:
     ArchivoSala _archivoSalas;
 
 } ;
-
-
 
 #endif // MANAGERSALAS_H_INCLUDED

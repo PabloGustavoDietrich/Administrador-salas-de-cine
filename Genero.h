@@ -8,6 +8,7 @@ public:
     Genero(int codGenero,string nombreGenero,bool estado);
     bool cargarGenero();
     void mostrarGenero();
+    void pasarAMinusculas(string &cadena);
 
     void setCodGenero(int codGenero);
     void setNombreGenero(string nombreGenero);

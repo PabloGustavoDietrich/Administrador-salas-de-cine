@@ -16,8 +16,6 @@ public:
     void mostrarPeliculasPorID();
     void sacarDeCartelera();
     void ponerEnCartelera();
-    Pelicula* traerPeliculasEnCartelera();/// verificar utilidad
-    int cantidadPeliculasEnCartelera();///posible funcion a eliminar
 
 private:
     ArchivoPelicula _archiPeli;

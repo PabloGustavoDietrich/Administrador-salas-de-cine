@@ -3,6 +3,9 @@ using namespace std;
 #include<cstring>
 #include "Pelicula.h"
 #include "ArchivoPelicula.h"
+#include "ManagerGenero.h"
+#include "ArchivoGenero.h"
+#include "Genero.h"
 Pelicula::Pelicula() {}
 
 Pelicula::Pelicula(int ID, string nombrePelicula,string nombreDirector,string apellidoDirector,string generoPelicula,string clasificacionPelicula,bool estado, Fecha fechaDeEstreno)
@@ -36,8 +39,14 @@ bool Pelicula::cargarPelicula()
     bool esDatoValido=false;
 
     cantidadDePeliculas=archivoPelicula.getCantidadPeliculas();
-    vecPeliculas=new Pelicula[cantidadDePeliculas];
-    archivoPelicula.leerTodas(vecPeliculas,cantidadDePeliculas);
+     if(cantidadDePeliculas!=-1)
+    {
+        vecPeliculas=new Pelicula[cantidadDePeliculas];
+        archivoPelicula.leerTodas(vecPeliculas,cantidadDePeliculas);
+    }else{
+        vecPeliculas=nullptr;
+    }
+
 
     if(cantidadDePeliculas<0) ///si no hay peliculas nos llega un -1
     {
@@ -59,14 +68,12 @@ bool Pelicula::cargarPelicula()
 
         for(int i=0; i<cantidadDePeliculas; i++)
         {
-            string nombreAComparar=vecPeliculas[i].getNombrePelicula();
-            pasarAMinusculas(nombreAComparar); ///despues de guardar directamente en minusculas todo esta linea se puede borrar
-            if(nombreAComparar==nombrePelicula)
+            if(vecPeliculas[i].getNombrePelicula()==nombrePelicula)
             {
                 encontro=true;
             }
         }
-        esDatoValido=nombrePelicula.length()> 0 && nombrePelicula.length() < TAMANIOCHARMEDIO && !encontro;
+        esDatoValido=nombrePelicula.length()> 0 && nombrePelicula.length() < TAMANIOCHARLARGO && !encontro;
         if (esDatoValido)
         {
             setNombrePelicula(nombrePelicula);
@@ -123,29 +130,27 @@ bool Pelicula::cargarPelicula()
 
     while(contadorDeErrores<3)
     {
-        cout<< "ingrese el genero de la pelicula: "<<endl;
-        getline(cin,generoPelicula);
-        string generos[] = {"accion","aventura","animacion","comedia","drama","terror","ciencia ficcion","fantasia","documental","musical","romance","misterio","suspenso","crimen","guerra","historica","western","biografia","familia","deporte"};
-        pasarAMinusculas(generoPelicula);
-        esDatoValido=false;
-        for(int i=0; i<20; i++)
-        {
-            if(generoPelicula==generos[i])
-            {
-                esDatoValido=true;
+        ManagerGenero managerGenero;
+        ArchivoGenero archivoGenero;
+        Genero registro;
+        managerGenero.mostrarGeneros();
+        int posicion=managerGenero.buscarPosicionGeneroPorCod();
+        if(posicion!=-1){
+            archivoGenero.leerGenero(registro,posicion);
+            if(registro.getEstado()){
+                generoPelicula=registro.getNombreGenero();
+                setGeneroPelicula(generoPelicula);
+                contadorDeErrores=0;
+                break;
+            }else{
+                cout<< "EL GENERO ELEGIDO NO ESTA ACTIVO"<<endl;
+                contadorDeErrores++;
             }
+        }else{
+            contadorDeErrores++;///no mostramos msj porque se duplica
         }
-        if(esDatoValido)
-        {
-            setGeneroPelicula(generoPelicula);
-            contadorDeErrores=0;
-            break;
-        }
-        else
-        {
-            cout<< "ERROR EN LA CARGA DEL GENERO DE LA PELICULA" <<endl;
-            contadorDeErrores++;
-        }
+        /// AGREGARLOS EN SU PROPIA CLASE
+        //string generos[] = {"accion","aventura","animacion","comedia","drama","terror","ciencia ficcion","fantasia","documental","musical","romance","misterio","suspenso","crimen","guerra","historica","western","biografia","familia","deporte"};
     }
 
     while(contadorDeErrores<3)
@@ -264,7 +269,7 @@ void Pelicula::pasarAMinusculas(string &cadena)
 {
     for (char &caracter : cadena)
     {
-        caracter = std::tolower(static_cast<unsigned char>(caracter));
+        caracter = tolower(static_cast<unsigned char>(caracter));
     }
 }
 

@@ -16,6 +16,7 @@ public:
     void mostrarSala();
     void mostrarSalaNumeroNombreYFecha();
     void mostrarSalaNumeroEstadoYFecha();
+    void mostrarNombreTipoYButacas();
 
     int getnumero();
     string getnombre();

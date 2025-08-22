@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "ArchivoSala.h"
+#include "Sala.h"
 using namespace std;
 
 ArchivoSala::ArchivoSala(string nombreArchivoSala)
@@ -151,10 +152,11 @@ bool ArchivoSala::altaLogicaSala(Sala reg, int posicion)
 }
 
 /// ESTA FUNCION MODIFICA LA BUTACA ELEGIDA POR EL COMPRADOR DE LA ENTRADA
-bool ArchivoSala::ocuparButaca(Sala reg,int posicion,int fila,int butaca)
+bool ArchivoSala::ocuparButaca(int numeroSala,int fila,int butaca)
 {
     FILE *pFile;
-    bool escribio;
+    bool escribio=false;
+    Sala registro;
 /// CORREGIMOS FILA Y BUTACA PARA QUE SE ADAPTE A LAS POSICIONES DE LA MATRIZ
     fila--;
     butaca--;
@@ -164,23 +166,104 @@ bool ArchivoSala::ocuparButaca(Sala reg,int posicion,int fila,int butaca)
     {
         return false;
     }
-
-    /// posicionamos el puntero y leemos los datos del registro para que queden en reg
-    fseek(pFile, posicion * sizeof(Sala), SEEK_SET);
-    fread(&reg,sizeof(Sala),1,pFile);
-    if (!reg.getButaca(fila,butaca))
+    int pos=0;
+    while(fread(&registro,sizeof(Sala),1,pFile))
     {
+        if(registro.getnumero()==numeroSala)
+        {
+            if (!registro.getButaca(fila,butaca))
+            {
 /// seteamos a true para ocupar butaca
-        reg.setButaca(fila,butaca,true);
+                registro.setButaca(fila,butaca,true);
 /// reposicionamos el puntero para escribir en el registro correcto
-        fseek(pFile, posicion * sizeof(Sala), SEEK_SET);
-        escribio=fwrite(&reg,sizeof(Sala),1,pFile);
+                fseek(pFile, pos * sizeof(Sala), SEEK_SET);
+                escribio=fwrite(&registro,sizeof(Sala),1,pFile);
+                break;
+            }
+        }
+        pos++;
     }
-    else
-    {
-        escribio=false;
-    }
+
     fclose(pFile);
 
     return escribio;
+}
+
+bool ArchivoSala::liberarButaca(int numeroSala,int fila,int butaca)
+{
+    FILE *pFile;
+    bool escribio=false;
+    Sala registro;
+/// CORREGIMOS FILA Y BUTACA PARA QUE SE ADAPTE A LAS POSICIONES DE LA MATRIZ
+    fila--;
+    butaca--;
+
+    pFile=fopen(_nombreArchivoSala.c_str(),"rb+");
+    if(pFile==nullptr)
+    {
+        return false;
+    }
+    int pos=0;
+    while(fread(&registro,sizeof(Sala),1,pFile))
+    {
+        if(registro.getnumero()==numeroSala)
+        {
+            if (registro.getButaca(fila,butaca))
+            {
+/// seteamos a false para liberar butaca
+                registro.setButaca(fila,butaca,false);
+/// reposicionamos el puntero para escribir en el registro correcto
+                fseek(pFile, pos * sizeof(Sala), SEEK_SET);
+                escribio=fwrite(&registro,sizeof(Sala),1,pFile);
+                break;
+            }
+        }
+        pos++;
+    }
+
+    fclose(pFile);
+
+    return escribio;
+}
+
+int ArchivoSala::getCantidadSalasPorFecha(Fecha fechaDeProyeccion)
+{
+    int cantidad=0;
+    Sala registro;
+    FILE *pFile;
+    pFile=fopen(_nombreArchivoSala.c_str(),"rb");
+    if(pFile==nullptr)
+    {
+        return 0;
+    }
+    while(fread(&registro,sizeof(Sala),1,pFile))
+    {
+        if(registro.getFechaAsignada()==fechaDeProyeccion&& registro.getEstadoSala())
+        {
+            cantidad++;
+        }
+    }
+    fclose(pFile);
+    return cantidad;
+}
+
+void ArchivoSala::leerSalasDisponiblesPorFecha(Sala reg[],Fecha fechaAsignada)
+{
+    FILE *pFile = fopen(_nombreArchivoSala.c_str(), "rb");
+    if (pFile == nullptr)
+    {
+        return;  // Mejor retornar 0 si no se puede abrir
+    }
+    Sala registro;
+    int contador=0;
+    while (fread(&registro, sizeof(Sala), 1, pFile)==1)/// podemos o no igualar a 1 ya que la funcion read retorna un 1 y eso lo toma como true, y cuando no puede leer mas retorna 0
+    {
+        if (registro.getEstadoSala()&&registro.getFechaAsignada()==fechaAsignada)
+        {
+            reg[contador]=registro;
+            contador++;
+        }
+    }
+
+    fclose(pFile);
 }

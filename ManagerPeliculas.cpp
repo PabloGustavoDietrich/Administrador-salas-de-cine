@@ -57,7 +57,6 @@ void ManagerPeliculas::mostrarPeliculas() {
 
     for(int i = 0; i < cantidad; i++) {
         vec[i].mostrarPelicula();
-
     }
     delete[] vec;
     pausarYLimpiar();
@@ -89,7 +88,7 @@ int ManagerPeliculas::buscarPosicionPeliculaPorID() {
     int ID;
     cout << "------------------------------------------" << endl;
     cout << "INGRESE EL ID DE LA PELICULA: ";
-    cin >> ID;
+    cin >> ID;///FALTA VALIDAR QUE INGRESE UN ENTERO
 
     for(int i = 0; i < cantidad; i++) {
         if(ID == vec[i].getNumeroDeID()) {
@@ -151,36 +150,5 @@ void ManagerPeliculas::ponerEnCartelera() {
         }
     }
     pausarYLimpiar();
-}
-
-/// FUNCION PARA USAR EN LA COMPRA DE ENTRADAS
-Pelicula* ManagerPeliculas::traerPeliculasEnCartelera() {
-    int total, enCartelera;
-    total = _archiPeli.getCantidadPeliculas();
-    enCartelera = _archiPeli.getCantidadPeliculasEnCartelera();
-
-    Pelicula* todas = cargarTodasLasPeliculas(total);
-    if(!todas) return nullptr;
-
-    Pelicula* cartelera = new Pelicula[enCartelera];
-    if(cartelera == nullptr) {
-        cout << "No se pudo reservar memoria para las películas." << endl;
-        delete[] todas;
-        return nullptr;
-    }
-
-    int pos = 0;
-    for(int i = 0; i < total; i++) {
-        if(todas[i].getEstado()) {
-            cartelera[pos++] = todas[i];
-        }
-    }
-
-    delete[] todas;
-    return cartelera;
-}
-/// retornar la cantidad de peliculas que hay en cartelera
-int ManagerPeliculas::cantidadPeliculasEnCartelera() {
-    return _archiPeli.getCantidadPeliculasEnCartelera();
 }
 

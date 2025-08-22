@@ -133,8 +133,7 @@ void ManagerSalas::bajaPorMantenimiento()
     {
         cout<< "LA SALA YA ESTABA EN MANTENIMIENTO"<<endl;
     }
-    system("pause");
-    system("cls");
+    pausarYLimpiar();
 }
 
 ///OPCION 5 DEL MENU DE SALAS
@@ -156,8 +155,7 @@ void ManagerSalas::altaPostMantenimiento()
     {
         cout<< "LA SALA YA ESTABA EN FUNCIONAMIENTO"<<endl;
     }
-    system("pause");
-    system("cls");
+    pausarYLimpiar();
 }
 
 /// OPCION 6 DEL MENU DE SALAS
@@ -184,73 +182,3 @@ void ManagerSalas::mostrarSalasPorFecha()
     pausarYLimpiar();
 }
 
-/// ESTA FUNCIONA LA USAMOS EN LA COMPRA DE ENTRADAS
-/*void ManagerSalas::mostrarSalaPorNumero(int numeroSala)/// podria enviar un false si la sala no la encuentra de ser necesario
-{
-    int posicion;
-    Sala registro;
-    posicion=buscarPosicionSalaPorNumero(numeroSala);
-
-    _archivoSalas.leerSala(registro,posicion);/// mandamos la referencia
-
-    registro.mostrarSala();
-
-}*////QUEDO EN DESUSO POR AHORA
-
-/// ESTA FUNCIONA LA USAMOS EN LA COMPRA DE ENTRADAS
-void ManagerSalas::mostrarSalaConNumero(int numeroSala,int &contadorDeSalasFueraDeServicio)/// podria enviar un false si la sala no la encuentra de ser necesario
-{
-    int posicion;
-    Sala registro;
-    posicion=buscarPosicionSalaPorNumero();/// SE BORRO EL PARAMETRO NUMERO DE SALA
-
-    _archivoSalas.leerSala(registro,posicion);/// mandamos la referencia
-
-    cout<< "SALA #: "<<registro.getnumero()<<endl;
-    if(registro.getEstadoSala())
-    {
-        cout<< "LA SALA ESTA ACTIVA"<<endl;
-    }
-    else
-    {
-        cout<< "LA SALA ESTA EN MANTENIMIENTO"<<endl;
-        contadorDeSalasFueraDeServicio++;
-    }
-
-}
-/// ESTA FUNCIONA LA USAMOS EN LA COMPRA DE ENTRADAS
-bool ManagerSalas::validaEstadoSala(int numeroSala)/// podria enviar un false si la sala no la encuentra de ser necesario
-{
-    int posicion;
-    Sala registro;
-    posicion=buscarPosicionSalaPorNumero();///SE BORRO EL PARAMETRO NUMERO DE SALA
-
-    _archivoSalas.leerSala(registro,posicion);/// mandamos la referencia
-    return registro.getEstadoSala();/// esta funcion retorna un booleano
-}
-
-/// ESTA FUNCIONA LA USAMOS EN LA COMPRA DE ENTRADAS
-bool ManagerSalas::comprarButaca(int numeroSala,int fila,int butaca)  ///cambie el tipo de funcion de void a bool para poder utilizar un while si la butaca está ocupada.
-{
-    Sala reg;
-    int posicion;
-    posicion=buscarPosicionSalaPorNumero();/// SE BORRO EL PARAMETRO NUMERO DE SALA
-
-    if(_archivoSalas.ocuparButaca(reg,posicion,fila,butaca))
-    {
-        cout<< "BUTACA COMPRADA CON EXITO"<<endl;
-        return true;
-    }
-    else
-    {
-        cout<< "ERROR CON LA BUTACA SELECCIONADA"<<endl;
-        return false;
-    }
-}
-
-int ManagerSalas::cantidadDeSalas()
-{
-    int cantidadDeSalas;
-    cantidadDeSalas=_archivoSalas.getCantidadSalas();
-    return cantidadDeSalas;
-}

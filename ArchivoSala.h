@@ -15,7 +15,11 @@ public:
       bool leerSala(Sala &reg,int posicion);
       bool bajaLogicaSala(Sala reg, int posicion);
       bool altaLogicaSala(Sala reg, int posicion);
-      bool ocuparButaca(Sala reg,int posicion,int fila,int butaca);
+      bool ocuparButaca(int numeroSala,int fila,int butaca);
+      bool liberarButaca(int numeroSala,int fila,int butaca);
+
+      int getCantidadSalasPorFecha(Fecha fechaDeProyeccion);
+      void leerSalasDisponiblesPorFecha(Sala reg[],Fecha fechaAsignada);
 private:
     string _nombreArchivoSala;
 };

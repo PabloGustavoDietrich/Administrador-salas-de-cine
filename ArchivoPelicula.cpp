@@ -157,3 +157,23 @@ bool ArchivoPelicula::altaLogicaPelicula(Pelicula reg, int poscicion)
 
 }
 
+void ArchivoPelicula::leerPeliculasEnCartelera(Pelicula reg[])
+{
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr)
+    {
+        return;  // Mejor retornar 0 si no se puede abrir
+    }
+    Pelicula registro;
+    int contador=0;
+    while (fread(&registro, sizeof(Pelicula), 1, pFile)==1)/// podemos o no igualar a 1 ya que la funcion read retorna un 1 y eso lo toma como true, y cuando no puede leer mas retorna 0
+    {
+        if (registro.getEstado())
+        {
+            reg[contador]=registro;
+            contador++;
+        }
+    }
+
+    fclose(pFile);
+}
